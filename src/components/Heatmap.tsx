@@ -9,7 +9,7 @@ export function Heatmap({ habit, habits }: HeatmapProps) {
   const lastNDays = getLastNDays(30); // Show last 30 days
 
   return (
-    <div className="grid grid-cols-7 w-32 rounded-3xl gap-1">
+    <div className="grid grid-cols-7 w-32 gap-1">
       {lastNDays.map((date) => {
         const formattedDate = formatDate(date);
         if (habit) {
