@@ -1,15 +1,66 @@
 export interface Habit {
-    id: string
+    habit_id: string
     name: string
+    description: string
+    goal: number
+    category: string
+    daily_checks: number
     completedDates: string[]
     color: string
 }
 
 export const habits: Habit[] = [
-    { id: '1', name: 'Exercise', completedDates: ['2023-06-01', '2023-06-02', '2023-06-04'], color: 'bg-red-500' },
-    { id: '2', name: 'Read', completedDates: ['2023-06-01', '2023-06-03', '2023-06-04'], color: 'bg-blue-500' },
-    { id: '3', name: 'Meditate', completedDates: ['2023-06-02', '2023-06-03', '2023-06-04'], color: 'bg-green-500' },
-]
+    {
+        habit_id: '0',
+        name: "Morning Run",
+        description: "Go for a 30-minute run every morning.",
+        goal: 30,
+        category: "Health",
+        daily_checks: 0,
+        completedDates: [],
+        color: "#FF5733", // A vibrant orange-red color
+    },
+    {
+        habit_id: '1',
+        name: "Read a Book",
+        description: "Read at least 10 pages of a book daily.",
+        goal: 10,
+        category: "Personal Development",
+        daily_checks: 0,
+        completedDates: [],
+        color: "#33A1FF", // A calming blue color
+    },
+    {
+        habit_id: '2',
+        name: "Drink Water",
+        description: "Drink 8 glasses of water per day.",
+        goal: 8,
+        category: "Health",
+        daily_checks: 0,
+        completedDates: [],
+        color: "#33FF57", // A refreshing green color
+    },
+    {
+        habit_id: '3',
+        name: "Learn Coding",
+        description: "Practice coding for 1 hour every day.",
+        goal: 1,
+        category: "Skill Development",
+        daily_checks: 0,
+        completedDates: [],
+        color: "#FFC300", // A motivating yellow color
+    },
+    {
+        habit_id: '4',
+        name: "Meditation",
+        description: "Meditate for 15 minutes daily.",
+        goal: 15,
+        category: "Mindfulness",
+        daily_checks: 0,
+        completedDates: [],
+        color: "#9B59B6", // A serene purple color
+    },
+];
 
 export function getLastNDays(n: number): Date[] {
     const result = []
