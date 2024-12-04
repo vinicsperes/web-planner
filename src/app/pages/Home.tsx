@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { habits as initialHabits, Habit } from '../utils/habitData';
-import { Heatmap } from '../components/Heatmap';
-import { HabitList } from '../components/HabitList';
+import { habits as initialHabits, Habit } from '@/utils/habitData';
+import { Heatmap } from '@/components/Heatmap';
+import { HabitList } from '@/components/HabitList';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 export default function Home() {

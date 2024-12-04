@@ -15,7 +15,7 @@ export function HabitList({ habits, onToggleHabit }: HabitListProps) {
         <div className="space-y-6">
             {habits.map((habit) => (
                 <div key={habit.id} className="space-y-2">
-                    <div className="flex items-center">
+                    <div className="flex items-center gap-2">
                         <Checkbox
                             id={habit.id}
                             checked={habit.completedDates.includes(today)}
