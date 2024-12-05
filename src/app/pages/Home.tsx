@@ -3,8 +3,19 @@ import { Habit } from '@/utils/habitData';
 import { Heatmap } from '@/components/Heatmap';
 import { HabitList } from '@/components/HabitList';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-
-
+import { Button, ButtonIcon } from '@/components/ui/button';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+  } from "@/components/ui/dialog"
+  import { Input } from "@/components/ui/input"
+  import { Label } from "@/components/ui/label"
+   
 export default function Home() {
     const initialHabits = JSON.parse(localStorage.getItem('habits') ?? '[]')
     const [habits, setHabits] = useState<Habit[]>(initialHabits);
@@ -29,7 +40,40 @@ export default function Home() {
 
     return (
         <div className="container mx-2 p-4">
-            <h1 className="text-3xl font-bold mb-6">Habit Tracker</h1>
+            <div className="flex justify-between items-center p-4">
+                <h1 className="text-3xl font-bold mb-6">Habit Tracker</h1>
+                
+                <Dialog>
+                    <DialogTrigger asChild>
+                        <ButtonIcon/>
+                    </DialogTrigger>
+                    <DialogContent className="bg-slate-900 text-slate-50 dark:bg-slate-800 dark:text-slate-200">
+                        <DialogHeader>
+                        <DialogTitle>Edit profile</DialogTitle>
+                        <DialogDescription>
+                            Make changes to your profile here. Click save when you're done.
+                        </DialogDescription>
+                        </DialogHeader>
+                        <div className="grid gap-4 py-4">
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="name" className="text-right">
+                            Name
+                            </Label>
+                            <Input id="name" value="Pedro Duarte" className="col-span-3" />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="username" className="text-right">
+                            Username
+                            </Label>
+                            <Input id="username" value="@peduarte" className="col-span-3" />
+                        </div>
+                        </div>
+                        <DialogFooter>
+                        <Button type="submit">Save changes</Button>
+                        </DialogFooter>
+                    </DialogContent>
+                </Dialog>
+            </div>
             <div className="grid gap-6 md:grid-cols-2">
                 <Card>
                     <CardHeader>
