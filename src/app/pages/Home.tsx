@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 
 export default function Home() {
-    const initialHabits = JSON.parse(localStorage.getItem('habits') ?? '')
+    const initialHabits = JSON.parse(localStorage.getItem('habits') ?? '[]')
     const [habits, setHabits] = useState<Habit[]>(initialHabits);
 
     const toggleHabit = (habitId: string) => {
