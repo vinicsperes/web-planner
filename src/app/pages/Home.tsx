@@ -41,13 +41,13 @@ export default function Home() {
     return (
         <div className="container mx-2 p-4">
             <div className="flex justify-between items-center p-4">
-                <h1 className="text-3xl font-bold mb-6">Habit Tracker</h1>
+                <h1 className="text-3xl font-bold mb-6">web-planner</h1>
                 
                 <Dialog>
                     <DialogTrigger asChild>
                         <ButtonIcon/>
                     </DialogTrigger>
-                    <DialogContent className="bg-slate-900 text-slate-50 dark:bg-slate-800 dark:text-slate-200">
+                    <DialogContent>
                         <DialogHeader>
                         <DialogTitle>Edit profile</DialogTitle>
                         <DialogDescription>

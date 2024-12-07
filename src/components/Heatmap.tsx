@@ -18,7 +18,7 @@ export function Heatmap({ habit, habits }: HeatmapProps) {
             <div
               key={formattedDate}
               className={`w-4 h-4 rounded-sm ${
-                isCompleted ? habit.color : 'bg-slate-700'
+                isCompleted ? habit.color : 'bg-zinc-700'
               }`}
               title={`${formattedDate}: ${isCompleted ? 'Completed' : 'Not completed'}`}
             />
