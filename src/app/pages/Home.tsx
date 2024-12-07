@@ -4,16 +4,12 @@ import { Heatmap } from '@/components/Heatmap';
 import { HabitList } from '@/components/HabitList';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from '@/components/ui/button';
-import {
-    Dialog,
-    DialogContent,
-    DialogTrigger,
-  } from "@/components/ui/dialog"
+import { Plus } from 'lucide-react';
+import MultiStepDialog from '@/components/MultiStepDialog';
 
 export default function Home() {
     const initialHabits = JSON.parse(localStorage.getItem('habits') ?? '[]')
     const [habits, setHabits] = useState<Habit[]>(initialHabits)
-    const [newWidgetDialogOpen, setNewWidgetDialogOpen] = useState<boolean>(false)
 
     const toggleHabit = (habitId: string) => {
         setHabits(prevHabits => {
@@ -37,22 +33,7 @@ export default function Home() {
         <div className="container mx-2 p-4">
             <div className="flex justify-between items-center p-4">
                 <h1 className="text-3xl font-bold mb-6">web-planner</h1>
-                <Dialog
-                    open={newWidgetDialogOpen}
-                    onOpenChange={setNewWidgetDialogOpen}
-                >
-                    <DialogTrigger>
-                        <Button variant='outline'>
-                            <Plus />
-                            <h1>New Widget</h1>
-                        </Button>
-                    </DialogTrigger>
-
-
-                    <DialogContent>
-                        <NewWidgetDialog />
-                    </DialogContent>
-                </Dialog>
+                <MultiStepDialog />
             </div>
             <div className="grid gap-6 md:grid-cols-2">
                 <Card>
@@ -75,5 +56,3 @@ export default function Home() {
         </div >
     );
 }
-
-
