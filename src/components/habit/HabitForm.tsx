@@ -39,11 +39,7 @@ const colors = [
   'bg-rose-500', 'bg-amber-500', 'bg-gray-500', 'bg-slate-500', 'bg-zinc-500'
 ]
 
-interface HabitFormProps {
-  onBack: () => void
-}
-
-export default function HabitForm({ onBack }: HabitFormProps) {
+export default function HabitForm() {
   const [selectedIcon, setSelectedIcon] = useState('')
   const [selectedColor, setSelectedColor] = useState('')
   const [goalInterval, setGoalInterval] = useState('none')
@@ -52,10 +48,6 @@ export default function HabitForm({ onBack }: HabitFormProps) {
   return (
     <ScrollArea className="h-[400px] pr-4">
       <form className="space-y-4">
-        <Button type="button" variant="ghost" onClick={onBack} className="mb-4">
-          <ChevronLeft className="mr-2 h-4 w-4" /> Back
-        </Button>
-        
         <div className="space-y-2">
           <Label htmlFor="name">Name</Label>
           <Input id="name" placeholder="Enter habit name" />
