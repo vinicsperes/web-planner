@@ -3,7 +3,7 @@ import { Habit } from '@/utils/habitData';
 import { Heatmap } from '@/components/Heatmap';
 import { HabitList } from '@/components/HabitList';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button, ButtonIcon } from '@/components/ui/button';
+import { Button } from '@/components/ui/button';
 import {
     Dialog,
     DialogContent,
@@ -15,6 +15,8 @@ import {
   } from "@/components/ui/dialog"
   import { Input } from "@/components/ui/input"
   import { Label } from "@/components/ui/label"
+
+import { PlusIcon } from "lucide-react"
    
 export default function Home() {
     const initialHabits = JSON.parse(localStorage.getItem('habits') ?? '[]')
@@ -45,7 +47,9 @@ export default function Home() {
                 
                 <Dialog>
                     <DialogTrigger asChild>
-                        <ButtonIcon/>
+                        <Button variant='outline'>
+                            <PlusIcon/> Add new widget
+                        </Button>
                     </DialogTrigger>
                     <DialogContent>
                         <DialogHeader>
