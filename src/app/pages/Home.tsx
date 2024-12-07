@@ -7,10 +7,8 @@ import { Button } from '@/components/ui/button';
 import {
     Dialog,
     DialogContent,
-} from "@/components/ui/dialog"
-import { NewWidgetDialog } from './new-widget';
-import { Plus } from 'lucide-react';
-import { DialogTrigger } from '@radix-ui/react-dialog';
+    DialogTrigger,
+  } from "@/components/ui/dialog"
 
 export default function Home() {
     const initialHabits = JSON.parse(localStorage.getItem('habits') ?? '[]')
