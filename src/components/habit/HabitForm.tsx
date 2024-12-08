@@ -4,10 +4,8 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { ChevronLeft, Activity, Book, Coffee, Dumbbell, Music, Heart, Sun, Moon, Star, Cloud, Zap, Droplet, Flame, Leaf, Feather, Eye, Smile, Frown, Meh, Camera } from 'lucide-react'
+import { Activity, Book, Coffee, Dumbbell, Music, Heart, Sun, Moon, Star, Cloud, Zap, Droplet, Flame, Leaf, Feather, Eye, Camera, Check, Bell, Gift, Target, } from 'lucide-react'
 
 const icons = [
   { name: 'Activity', component: Activity },
@@ -26,11 +24,13 @@ const icons = [
   { name: 'Leaf', component: Leaf },
   { name: 'Feather', component: Feather },
   { name: 'Eye', component: Eye },
-  { name: 'Smile', component: Smile },
-  { name: 'Frown', component: Frown },
-  { name: 'Meh', component: Meh },
   { name: 'Camera', component: Camera },
-]
+  { name: 'Check', component: Check },
+  { name: 'Bell', component: Bell },
+  { name: 'Gift', component: Gift },
+  { name: 'Target', component: Target }
+];
+
 
 const colors = [
   'bg-red-500', 'bg-blue-500', 'bg-green-500', 'bg-yellow-500', 'bg-purple-500',
@@ -48,6 +48,7 @@ export default function HabitForm() {
   return (
     <ScrollArea className="h-[400px] pr-4">
       <form className="space-y-4">
+
         <div className="space-y-2">
           <Label htmlFor="name">Name</Label>
           <Input id="name" placeholder="Enter habit name" />
@@ -61,6 +62,12 @@ export default function HabitForm() {
         <div className="space-y-2">
           <label htmlFor="goal">Daily Goal</label>
           <div className="flex items-center space-x-2">
+            <Input
+              id="goal"
+              value={goalConclusions + ' / Day'}
+              readOnly
+              className="w-full border rounded"
+            />
             <button
               type="button"
               className="px-3 py-1 border rounded disabled:opacity-50"
@@ -69,12 +76,6 @@ export default function HabitForm() {
             >
               -
             </button>
-            <Input
-              id="goal"
-              value={goalConclusions}
-              readOnly
-              className="w-16 text-center border rounded"
-            />
             <button
               type="button"
               className="px-3 py-1 border rounded disabled:opacity-50"
@@ -87,26 +88,26 @@ export default function HabitForm() {
         </div>
 
         <div className="space-y-2">
-          <Label>Select an icon</Label>
-          <RadioGroup onValueChange={setSelectedIcon} className="grid grid-cols-5 gap-2">
-            {icons.map((icon) => (
-              <div key={icon.name}>
-                <RadioGroupItem
-                  value={icon.name}
-                  id={`icon-${icon.name}`}
-                  className="peer sr-only"
-                />
-                <Label
-                  htmlFor={`icon-${icon.name}`}
-                  className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-2 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
-                >
-                  <icon.component className="mb-1 h-6 w-6" />
-                  <span className="text-xs">{icon.name}</span>
-                </Label>
-              </div>
-            ))}
-          </RadioGroup>
-        </div>
+  <Label>Select an icon</Label>
+  <RadioGroup onValueChange={setSelectedIcon} className="grid grid-cols-7 gap-2">
+    {icons.map((icon) => (
+      <div key={icon.name}>
+        <RadioGroupItem
+          value={icon.name}
+          id={`icon-${icon.name}`}
+          className="peer sr-only"
+        />
+        <Label
+          htmlFor={`icon-${icon.name}`}
+          className="flex items-center justify-center rounded-md border-2 border-muted bg-popover hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+          style={{ width: "40px", height: "40px" }}
+        >
+          <icon.component className="h-6 w-6" />
+        </Label>
+      </div>
+    ))}
+  </RadioGroup>
+</div>
 
         <div className="space-y-2">
           <Label>Select a color</Label>
