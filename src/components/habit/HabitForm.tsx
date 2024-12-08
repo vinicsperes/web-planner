@@ -31,13 +31,14 @@ const icons = [
   { name: 'Target', component: Target }
 ];
 
-
 const colors = [
   'bg-red-500', 'bg-blue-500', 'bg-green-500', 'bg-yellow-500', 'bg-purple-500',
   'bg-pink-500', 'bg-indigo-500', 'bg-teal-500', 'bg-orange-500', 'bg-cyan-500',
   'bg-lime-500', 'bg-emerald-500', 'bg-sky-500', 'bg-violet-500', 'bg-fuchsia-500',
-  'bg-rose-500', 'bg-amber-500', 'bg-gray-500', 'bg-slate-500', 'bg-zinc-500'
+  'bg-rose-500', 'bg-amber-500', 'bg-orange-700', 'bg-green-400', 'bg-violet-900',
+  'bg-gray-400' // Cinza mais suave
 ]
+
 
 export default function HabitForm() {
   const [selectedIcon, setSelectedIcon] = useState('')
@@ -111,7 +112,7 @@ export default function HabitForm() {
 
         <div className="space-y-2">
           <Label>Select a color</Label>
-          <RadioGroup onValueChange={setSelectedColor} className="grid grid-cols-5 gap-2">
+          <RadioGroup onValueChange={setSelectedColor} className="grid grid-cols-7 gap-2">
             {colors.map((color) => (
               <div key={color} className="flex justify-center items-center">
                 <RadioGroupItem
@@ -121,14 +122,18 @@ export default function HabitForm() {
                 />
                 <Label
                   htmlFor={`color-${color}`}
-                  className={`flex h-10 w-10 items-center justify-center rounded-full border-2 border-muted bg-popover hover:border-primary peer-data-[state=checked]:border-primary cursor-pointer`}
+                  className="flex items-center justify-center rounded-md border-2 border-muted bg-popover hover:border-primary peer-data-[state=checked]:border-primary cursor-pointer"
+                  style={{ width: "40px", height: "40px" }}
                 >
-                  <div className={`h-6 w-6 rounded-full ${color}`} />
+                  <div
+                    className={`h-6 w-6 ${color} rounded-md m-1`}
+                  />
                 </Label>
               </div>
             ))}
           </RadioGroup>
         </div>
+
 
         <Button type="submit" className="w-full">Save Habit</Button>
       </form>
