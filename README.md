@@ -21,7 +21,7 @@
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/seu-usuario/web-planner.git
+   git clone https://github.com/vinicsperes/web-planner.git
    ```
 
 2. Instale as dependências:
