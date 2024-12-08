@@ -5,7 +5,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Activity, Book, Coffee, Dumbbell, Music, Heart, Sun, Moon, Star, Cloud, Zap, Droplet, Flame, Leaf, Feather, Eye, Camera, Check, Bell, Gift, Target, } from 'lucide-react'
+import { Activity, Book, Coffee, Dumbbell, Music, Heart, Sun, Moon, Star, Cloud, Zap, Droplet, Flame, Leaf, Feather, Eye, Camera, Check, Bell, Gift, Target } from 'lucide-react'
 
 const icons = [
   { name: 'Activity', component: Activity },
@@ -36,15 +36,18 @@ const colors = [
   'bg-pink-500', 'bg-indigo-500', 'bg-teal-500', 'bg-orange-500', 'bg-cyan-500',
   'bg-lime-500', 'bg-emerald-500', 'bg-sky-500', 'bg-violet-500', 'bg-fuchsia-500',
   'bg-rose-500', 'bg-amber-500', 'bg-orange-700', 'bg-green-400', 'bg-violet-900',
-  'bg-gray-400' // Cinza mais suave
+  'bg-gray-400'
 ]
-
 
 export default function HabitForm() {
   const [selectedIcon, setSelectedIcon] = useState('')
   const [selectedColor, setSelectedColor] = useState('')
   const [goalInterval, setGoalInterval] = useState('none')
-  const [goalConclusions, setGoalConclusions] = useState(1);
+  const [goalConclusions, setGoalConclusions] = useState(1)
+  const [habitName, setHabitName] = useState('')
+  const [habitDescription, setHabitDescription] = useState('')
+
+  const isFormValid = habitName && habitDescription && selectedIcon && selectedColor && goalConclusions > 0
 
   return (
     <ScrollArea className="h-[400px] pr-4">
@@ -52,12 +55,22 @@ export default function HabitForm() {
 
         <div className="space-y-2">
           <Label htmlFor="name">Name</Label>
-          <Input id="name" placeholder="Enter habit name" />
+          <Input
+            id="name"
+            value={habitName}
+            onChange={(e) => setHabitName(e.target.value)}
+            placeholder="Enter habit name"
+          />
         </div>
 
         <div className="space-y-2">
           <Label htmlFor="description">Description</Label>
-          <Textarea id="description" placeholder="Enter habit description" />
+          <Textarea
+            id="description"
+            value={habitDescription}
+            onChange={(e) => setHabitDescription(e.target.value)}
+            placeholder="Enter habit description"
+          />
         </div>
 
         <div className="space-y-2">
@@ -100,7 +113,7 @@ export default function HabitForm() {
                 />
                 <Label
                   htmlFor={`icon-${icon.name}`}
-                  className="flex items-center justify-center rounded-md border-2 border-muted bg-popover hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary cursor-pointer"
+                  className="flex items-center justify-center rounded-md border-2 border-muted bg-popover hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary cursor-pointer"
                   style={{ width: "40px", height: "40px" }}
                 >
                   <icon.component className="h-6 w-6" />
@@ -134,8 +147,13 @@ export default function HabitForm() {
           </RadioGroup>
         </div>
 
-
-        <Button type="submit" className="w-full">Save Habit</Button>
+        <Button
+          type="submit"
+          className={`w-full ${isFormValid ? 'bg-green-600 hover:bg-green-500' : 'bg-gray-400 cursor-not-allowed'}`}
+          disabled={!isFormValid}
+        >
+          Save Habit
+        </Button>
       </form>
     </ScrollArea>
   )
