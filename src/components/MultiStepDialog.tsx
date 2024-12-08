@@ -4,9 +4,16 @@ import { useState } from 'react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import HabitForm from './habit/HabitForm'
-import { ChevronLeft, Notebook, Plus, SquareCheck } from 'lucide-react'
+import { ChevronLeft, Notebook, Plus, SquareCheck, Type, BookImage } from 'lucide-react'
 
-type Step = 'initial' | 'habits' | 'notes' | 'teste'
+type Step = 'initial' | 'habits' | 'notes' | 'teste' | 'header' | 'image'
+
+const steps: { name: Step, label: string, icon: JSX.Element | null }[] = [
+  { name: 'habits', label: 'Habits', icon: <SquareCheck size={48} /> },
+  { name: 'notes', label: 'Notes', icon: <Notebook size={48} /> },
+  { name: 'header', label: 'Header', icon: <Type size={48} /> },
+  { name: 'image', label: 'Image', icon: <BookImage size={48} /> },
+]
 
 export default function MultiStepDialog() {
   const [open, setOpen] = useState(false)
@@ -14,36 +21,6 @@ export default function MultiStepDialog() {
 
   const handleStepChange = (step: Step) => {
     setCurrentStep(step)
-  }
-  console.log('currentStep: ' + currentStep)
-  const renderContent = () => {
-    switch (currentStep) {
-      case 'initial':
-        return (
-          <div className="grid grid-cols-3 gap-3">
-            <Button
-              className='w-full h-full flex-col p-8'
-              onClick={() => handleStepChange('habits')}
-            >
-              <SquareCheck size={48} />
-              <h1>Habits</h1>
-            </Button>
-            <Button
-              className='w-full h-full flex-col p-8'
-              onClick={() => handleStepChange('notes')}
-            >
-              <Notebook size={48} />
-              <h1>Notes</h1>
-            </Button>
-          </div>
-        )
-      case 'habits':
-        return <HabitForm />
-      case 'notes':
-        return <div>Notes content (to be implemented)</div>
-      case 'teste':
-        return <div>Teste content (to be implemented)</div>
-    }
   }
 
   return (
@@ -62,7 +39,7 @@ export default function MultiStepDialog() {
                 type="button"
                 variant="default"
                 className="p-1 rounded-5"
-                onClick={() => handleStepChange('initial')}
+                onClick={() => setCurrentStep('initial')}
               >
                 <ChevronLeft className="h-4 w-4" />
               </Button>
@@ -72,9 +49,28 @@ export default function MultiStepDialog() {
             </span>
           </DialogTitle>
         </DialogHeader>
-        {renderContent()}
+        
+        {currentStep === 'initial' ? (
+          <div className="grid grid-cols-3 gap-3">
+            {steps.map((step) => (
+              <Button
+                key={step.name}
+                className='w-full h-full flex-col p-8'
+                onClick={() => handleStepChange(step.name)}
+              >
+                {step.icon}
+                <h1>{step.label}</h1>
+              </Button>
+            ))}
+          </div>
+        ) : currentStep === 'habits' ? (
+          <HabitForm />
+        ) : currentStep === 'notes' ? (
+          <div>Notes content (to be implemented)</div>
+        ) : currentStep === 'teste' ? (
+          <div>Teste content (to be implemented)</div>
+        ) : null}
       </DialogContent>
     </Dialog>
   )
 }
-
