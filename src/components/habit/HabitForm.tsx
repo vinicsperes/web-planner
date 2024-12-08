@@ -88,40 +88,40 @@ export default function HabitForm() {
         </div>
 
         <div className="space-y-2">
-  <Label>Select an icon</Label>
-  <RadioGroup onValueChange={setSelectedIcon} className="grid grid-cols-7 gap-2">
-    {icons.map((icon) => (
-      <div key={icon.name}>
-        <RadioGroupItem
-          value={icon.name}
-          id={`icon-${icon.name}`}
-          className="peer sr-only"
-        />
-        <Label
-          htmlFor={`icon-${icon.name}`}
-          className="flex items-center justify-center rounded-md border-2 border-muted bg-popover hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
-          style={{ width: "40px", height: "40px" }}
-        >
-          <icon.component className="h-6 w-6" />
-        </Label>
-      </div>
-    ))}
-  </RadioGroup>
-</div>
+          <Label>Select an icon</Label>
+          <RadioGroup onValueChange={setSelectedIcon} className="grid grid-cols-7 gap-2">
+            {icons.map((icon) => (
+              <div key={icon.name} className="flex justify-center items-center">
+                <RadioGroupItem
+                  value={icon.name}
+                  id={`icon-${icon.name}`}
+                  className="peer hidden"
+                />
+                <Label
+                  htmlFor={`icon-${icon.name}`}
+                  className="flex items-center justify-center rounded-md border-2 border-muted bg-popover hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary cursor-pointer"
+                  style={{ width: "40px", height: "40px" }}
+                >
+                  <icon.component className="h-6 w-6" />
+                </Label>
+              </div>
+            ))}
+          </RadioGroup>
+        </div>
 
         <div className="space-y-2">
           <Label>Select a color</Label>
           <RadioGroup onValueChange={setSelectedColor} className="grid grid-cols-5 gap-2">
             {colors.map((color) => (
-              <div key={color}>
+              <div key={color} className="flex justify-center items-center">
                 <RadioGroupItem
                   value={color}
                   id={`color-${color}`}
-                  className="peer sr-only"
+                  className="peer hidden"
                 />
                 <Label
                   htmlFor={`color-${color}`}
-                  className={`flex h-10 w-10 items-center justify-center rounded-full border-2 border-muted bg-popover hover:border-primary peer-data-[state=checked]:border-primary`}
+                  className={`flex h-10 w-10 items-center justify-center rounded-full border-2 border-muted bg-popover hover:border-primary peer-data-[state=checked]:border-primary cursor-pointer`}
                 >
                   <div className={`h-6 w-6 rounded-full ${color}`} />
                 </Label>
