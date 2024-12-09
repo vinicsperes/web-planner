@@ -26,18 +26,18 @@ export default function MultiStepDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline">
+        <Button variant="default">
           <Plus />
-          Add new habit
+          <span>Add new habit</span>
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] sm:max-h-[700px]">
+      <DialogContent className="sm:max-w-[400px] sm:max-h-[900px] border-zinc-900">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             {currentStep !== 'initial' && (
               <Button
                 type="button"
-                variant="default"
+                variant="ghost"
                 className="p-1 rounded-5"
                 onClick={() => setCurrentStep('initial')}
               >
@@ -49,7 +49,7 @@ export default function MultiStepDialog() {
             </span>
           </DialogTitle>
         </DialogHeader>
-        
+
         {currentStep === 'initial' ? (
           <div className="grid grid-cols-3 gap-3">
             {steps.map((step) => (

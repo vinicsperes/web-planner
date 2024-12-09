@@ -1,11 +1,9 @@
-import { useState } from 'react';
-import { Habit } from '@/utils/habitData';
-import { Heatmap } from '@/components/Heatmap';
-import { HabitList } from '@/components/HabitList';
+import { useState } from 'react'
+import { Habit } from '@/utils/habitData'
+import { Heatmap } from '@/components/Heatmap'
+import { HabitList } from '@/components/HabitList'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from '@/components/ui/button';
-import { Plus } from 'lucide-react';
-import MultiStepDialog from '@/components/MultiStepDialog';
+import MultiStepDialog from '@/components/MultiStepDialog'
 
 export default function Home() {
     const initialHabits = JSON.parse(localStorage.getItem('habits') ?? '[]')
@@ -15,19 +13,19 @@ export default function Home() {
         setHabits(prevHabits => {
             const updatedHabits = prevHabits.map(habit => {
                 if (habit.habit_id === habitId) {
-                    const today = new Date().toISOString().split('T')[0];
+                    const today = new Date().toISOString().split('T')[0]
                     const updatedDates = habit.completedDates.includes(today)
                         ? habit.completedDates.filter(date => date !== today)
-                        : [...habit.completedDates, today];
-                    return { ...habit, completedDates: updatedDates };
+                        : [...habit.completedDates, today]
+                    return { ...habit, completedDates: updatedDates }
                 }
-                return habit;
-            });
+                return habit
+            })
 
-            localStorage.setItem('habits', JSON.stringify(updatedHabits));
-            return updatedHabits;
-        });
-    };
+            localStorage.setItem('habits', JSON.stringify(updatedHabits))
+            return updatedHabits
+        })
+    }
 
     return (
         <div className="container mx-2 p-4">
@@ -54,5 +52,5 @@ export default function Home() {
                 </Card>
             </div>
         </div >
-    );
+    )
 }
