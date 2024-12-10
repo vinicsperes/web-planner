@@ -1,5 +1,5 @@
 export interface Habit {
-    habit_id: string
+    _id: number
     name: string
     description: string
     goal: number

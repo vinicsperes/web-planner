@@ -5,7 +5,7 @@ import { Heatmap } from './Heatmap'
 
 interface HabitListProps {
     habits: Habit[];
-    onToggleHabit: (habitId: string) => void;
+    onToggleHabit: (habitId: Number) => void;
 }
 
 export function HabitList({ habits, onToggleHabit }: HabitListProps) {
@@ -14,14 +14,14 @@ export function HabitList({ habits, onToggleHabit }: HabitListProps) {
     return (
         <div className="space-y-6">
             {habits.map((habit) => (
-                <div key={habit.habit_id} className="space-y-2">
+                <div key={habit._id} className="space-y-2">
                     <div className="flex items-center gap-2">
                         <Checkbox
-                            id={habit.habit_id}
+                            id={habit._id.toString()}
                             checked={habit.completedDates.includes(today)}
-                            onCheckedChange={() => onToggleHabit(habit.habit_id)}
+                            onCheckedChange={() => onToggleHabit(habit._id)}
                         />
-                        <Label htmlFor={habit.habit_id}>{habit.name}</Label>
+                        <Label htmlFor={habit._id.toString()}>{habit.name}</Label>
                     </div>
                     <Heatmap habit={habit} />
                 </div>
