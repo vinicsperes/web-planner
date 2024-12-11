@@ -34,7 +34,7 @@ export function createHabit(habit: Habit): Result<Habit[], string> {
     return { success: true, value: habits }
 }
 
-export function deleteHabit(habitId: Number): Result<Habit[], string> {
+export function deleteHabit(habitId: string): Result<Habit[], string> {
     const habits = getHabits()
 
     if (!habits) return { success: false, error: 'No habits found' }
@@ -47,7 +47,7 @@ export function deleteHabit(habitId: Number): Result<Habit[], string> {
     return { success: true, value: filteredHabits }
 }
 
-export function editHabit(habitId: Number, editedHabit: Habit): Result<Habit[], string> {
+export function editHabit(habitId: string, editedHabit: Habit): Result<Habit[], string> {
     const habits = getHabits()
 
     if (!habits) return { success: false, error: 'No habits found' }
@@ -61,7 +61,7 @@ export function editHabit(habitId: Number, editedHabit: Habit): Result<Habit[], 
     return { success: true, value: updatedHabits }
 }
 
-export function checkHabit(habitId: Number): Result<Habit, string> {
+export function checkHabit(habitId: string): Result<Habit, string> {
     const habits = getHabits()
 
     if (!habits) return { success: false, error: 'No habits found' }
