@@ -5,7 +5,7 @@ import { Heatmap } from './Heatmap'
 
 interface HabitListProps {
     habits: Habit[];
-    onToggleHabit: (habitId: Number) => void;
+    onToggleHabit: (habitId: string) => void;
 }
 
 export function HabitList({ habits, onToggleHabit }: HabitListProps) {

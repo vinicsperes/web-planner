@@ -62,7 +62,7 @@ export function getLastNDays(n: number): Date[] {
 }
 
 export function formatDate(date: Date): string {
-    return date.toISOString().split('T')[0]
+    return date.toLocaleDateString().split('T')[0]
 }
 
 export function getOpacity(completedCount: number, totalHabits: number): string {

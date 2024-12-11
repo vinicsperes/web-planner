@@ -1,31 +1,23 @@
-import { useState } from 'react'
-import { Habit } from '@/utils/habitData'
 import { Heatmap } from '@/components/Heatmap'
 import { HabitList } from '@/components/HabitList'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import MultiStepDialog from '@/components/MultiStepDialog'
+import { checkHabit, fetchHabits } from '@/utils/fakeApi'
 
 export default function Home() {
-    const initialHabits = JSON.parse(localStorage.getItem('habits') || '[]')
-    const [habits, setHabits] = useState<Habit[]>(initialHabits)
+    const habitsResult = fetchHabits()
 
-    const toggleHabit = (habitId: Number) => {
-        setHabits(prevHabits => {
-            const updatedHabits = prevHabits.map(habit => {
-                if (habit._id === habitId) {
-                    const today = new Date().toISOString().split('T')[0]
-                    const updatedDates = habit.completedDates.includes(today)
-                        ? habit.completedDates.filter(date => date !== today)
-                        : [...habit.completedDates, today]
-                    return { ...habit, completedDates: updatedDates }
-                }
-                return habit
-            })
+    const habits = (habitsResult.success === true)
+        ? habitsResult.value
+        : []
 
-            localStorage.setItem('habits', JSON.stringify(updatedHabits))
-            return updatedHabits
-        })
+    function toggleHabit(habit: string) {
+        console.log('check')
+        const result = checkHabit(habit)
+        console.log(result)
     }
+
+    console.log(habits)
 
     return (
         <div className="container mx-2 p-4">
