@@ -17,8 +17,8 @@ export interface HabitFormData {
     icon: string;
     color: string;
     goal: number;
-  }
-  
+}
+
 export const habitIcons = [
     { name: 'Activity', component: Activity },
     { name: 'Book', component: Book },

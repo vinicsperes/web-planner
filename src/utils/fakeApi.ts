@@ -5,7 +5,7 @@ type Result<T, E> =
     | { success: false; error: E }
 
 function getHabits(): Habit[] {
-    const storedString = localStorage.getItem('habits') ?? '[]'
+    const storedString = localStorage.getItem('habits') || '[]'
     const habits: Habit[] = JSON.parse(storedString)
 
     return habits
