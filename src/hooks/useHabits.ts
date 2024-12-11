@@ -46,15 +46,9 @@ export function useHabits() {
       prevHabits.map((habit) =>
         habit._id === habitId
           ? {
-            ...habit,
-            // Filtra a data de hoje e adiciona o progresso para hoje
-            completedDates: [
-              ...habit.completedDates.filter(
-                (date) => date !== new Date().toISOString().split("T")[0]
-              ),
-              ...Array(progress).fill(new Date().toISOString().split("T")[0]),
-            ],
-          }
+              ...habit,
+              completedDates: Array(progress).fill(new Date().toISOString().split('T')[0]),
+            }
           : habit
       )
     );
