@@ -11,7 +11,11 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { createHabit } from '../../utils/fakeApi';
 import { HabitFormData, habitColors as colors, habitIcons as icons } from '../../utils/habitData';
 
-export default function HabitForm() {
+type HabitFormProps = {
+  closeDialog: () => void;
+};
+
+export default function HabitForm({ closeDialog }: HabitFormProps) {
     const { register, handleSubmit, setValue, watch, formState: { isValid } } = useForm<HabitFormData>({
         defaultValues: {
             goal: 1,
@@ -35,6 +39,7 @@ export default function HabitForm() {
 
         if (result.success) {
             console.log("Habit created successfully:", result.value);
+            closeDialog()
         } else {
             console.error("Error creating habit:", result.error);
         }

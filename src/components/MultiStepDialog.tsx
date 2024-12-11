@@ -23,6 +23,10 @@ export default function MultiStepDialog() {
     setCurrentStep(step)
   }
 
+  const closeDialog = () => {
+    setOpen(false);
+  };
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
@@ -64,7 +68,7 @@ export default function MultiStepDialog() {
             ))}
           </div>
         ) : currentStep === 'habits' ? (
-          <HabitForm />
+          <HabitForm closeDialog={closeDialog}/>
         ) : currentStep === 'notes' ? (
           <div>Notes content (to be implemented)</div>
         ) : currentStep === 'teste' ? (
