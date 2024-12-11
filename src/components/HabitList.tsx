@@ -1,4 +1,5 @@
-import { Habit } from '../utils/habitData'
+import { Activity } from 'lucide-react';
+import { Habit, habitIcons } from '../utils/habitData'
 import { Heatmap } from './Heatmap'
 
 interface HabitListProps {
@@ -22,17 +23,26 @@ export function HabitList({ habits, onUpdateHabitProgress }: HabitListProps) {
     return (
         <div className="space-y-6">
             {habits.map((habit) => {
-                // Calculando o progresso de hoje
                 const todayProgress = habit.completedDates.filter((date) => date === today).length;
 
                 // Calculando o comprimento da borda do círculo (perímetro)
-                const circleCircumference = 2 * Math.PI * 14; // Raio reduzido para 14
+                const circleCircumference = 2 * Math.PI * 14;
                 const progressOffset = (circleCircumference * (habit.goal - todayProgress)) / habit.goal;
+
+                const IconComponent = habitIcons.find(icon => icon.name === habit.icon)?.component || Activity; // Default to Activity if not found
 
                 return (
                     <div key={habit._id} className="space-y-2">
-                        <div className="flex items-center gap-3">
-                            {/* Barra de progresso atrás do botão */}
+                        <div className="flex items-center gap-3 justify-between">
+                            <div className='flex gap-3'>
+                                <div className="w-10 h-10 bg-gray-400 rounded-md flex items-center justify-center text-white text-xl">
+                                    <IconComponent />
+                                </div>
+                                <div className="flex flex-col text-left">
+                                    <span className="text-gray-200 text-base">{habit.name}</span>
+                                    <span className="text-gray-400 text-sm">{habit.description}</span>
+                                </div>
+                            </div>
                             <div className="relative w-12 h-12 flex justify-center items-center">
                                 {/* Círculo de fundo */}
                                 <svg
@@ -78,7 +88,6 @@ export function HabitList({ habits, onUpdateHabitProgress }: HabitListProps) {
                                 </button>
                             </div>
                         </div>
-                        <span className="text-gray-800 text-sm">{habit.name}</span>
 
                         {/* Heatmap */}
                         <Heatmap habits={habits} />
