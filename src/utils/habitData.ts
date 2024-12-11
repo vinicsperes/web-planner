@@ -73,5 +73,3 @@ export function getOpacity(completedCount: number, totalHabits: number): string 
     if (percentage > 0) return 'opacity-25'
     return 'opacity-10'
 }
-
-

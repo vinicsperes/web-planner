@@ -41,5 +41,24 @@ export function useHabits() {
     );
   }
 
-  return { habits, addHabit, deleteHabit, editHabit, checkHabit };
+  const onUpdateHabitProgress = (habitId: string, progress: number) => {
+    setHabits((prevHabits) =>
+      prevHabits.map((habit) =>
+        habit._id === habitId
+          ? {
+            ...habit,
+            // Filtra a data de hoje e adiciona o progresso para hoje
+            completedDates: [
+              ...habit.completedDates.filter(
+                (date) => date !== new Date().toISOString().split("T")[0]
+              ),
+              ...Array(progress).fill(new Date().toISOString().split("T")[0]),
+            ],
+          }
+          : habit
+      )
+    );
+  };
+
+  return { habits, addHabit, deleteHabit, editHabit, checkHabit, onUpdateHabitProgress };
 }

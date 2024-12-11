@@ -6,14 +6,14 @@ import { useHabits } from '@/hooks/useHabits';
 import { Habit } from '@/utils/habitData';
 
 export default function Home() {
-  const { habits, addHabit, checkHabit } = useHabits();
+  const { habits, addHabit, onUpdateHabitProgress } = useHabits();
 
   const handleAddHabit = (newHabit: Habit) => {
     addHabit(newHabit);
   };
 
-  const toggleHabit = (habitId: string) => {
-    checkHabit(habitId);
+  const handleUpdateProgress = (habitId: string, progress: number) => {
+    onUpdateHabitProgress(habitId, progress);
   };
 
   return (
@@ -36,7 +36,7 @@ export default function Home() {
             <CardTitle>Today's Habits</CardTitle>
           </CardHeader>
           <CardContent>
-            <HabitList habits={habits} onToggleHabit={toggleHabit} />
+            <HabitList habits={habits} onUpdateHabitProgress={handleUpdateProgress} />
           </CardContent>
         </Card>
       </div>
