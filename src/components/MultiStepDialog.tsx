@@ -5,6 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Button } from "@/components/ui/button"
 import HabitForm from './habit/HabitForm'
 import { ChevronLeft, Notebook, Plus, SquareCheck, Type, BookImage } from 'lucide-react'
+import { Habit } from '@/utils/habitData'
 
 type Step = 'initial' | 'habits' | 'notes' | 'teste' | 'header' | 'image'
 
@@ -14,14 +15,17 @@ const steps: { name: Step, label: string, icon: JSX.Element | null }[] = [
   { name: 'header', label: 'Header', icon: <Type size={48} /> },
   { name: 'image', label: 'Image', icon: <BookImage size={48} /> },
 ]
+type MultiStepDialogProps = {
+  onAddHabit: (habit: Habit) => void;
+};
 
-export default function MultiStepDialog() {
-  const [open, setOpen] = useState(false)
-  const [currentStep, setCurrentStep] = useState<Step>('initial')
+export default function MultiStepDialog({ onAddHabit }: MultiStepDialogProps) {
+  const [open, setOpen] = useState(false);
+  const [currentStep, setCurrentStep] = useState<Step>('initial');
 
   const handleStepChange = (step: Step) => {
-    setCurrentStep(step)
-  }
+    setCurrentStep(step);
+  };
 
   const closeDialog = () => {
     setOpen(false);
@@ -59,7 +63,7 @@ export default function MultiStepDialog() {
             {steps.map((step) => (
               <Button
                 key={step.name}
-                className='w-full h-full flex-col p-8'
+                className="w-full h-full flex-col p-8"
                 onClick={() => handleStepChange(step.name)}
               >
                 {step.icon}
@@ -68,13 +72,9 @@ export default function MultiStepDialog() {
             ))}
           </div>
         ) : currentStep === 'habits' ? (
-          <HabitForm closeDialog={closeDialog}/>
-        ) : currentStep === 'notes' ? (
-          <div>Notes content (to be implemented)</div>
-        ) : currentStep === 'teste' ? (
-          <div>Teste content (to be implemented)</div>
+          <HabitForm closeDialog={closeDialog} onAddHabit={onAddHabit} />
         ) : null}
       </DialogContent>
     </Dialog>
-  )
+  );
 }
