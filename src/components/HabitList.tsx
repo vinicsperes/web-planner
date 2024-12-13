@@ -35,7 +35,7 @@ export function HabitList({ habits, onUpdateHabitProgress }: HabitListProps) {
                     <div key={habit._id} className="space-y-2">
                         <div className="flex items-center gap-3 justify-between">
                             <div className='flex gap-3'>
-                                <div className="w-10 h-10 bg-gray-400 rounded-md flex items-center justify-center text-white text-xl">
+                                <div className={`w-10 h-10 rounded-md flex items-center justify-center text-white text-xl ${habit.color}`}>
                                     <IconComponent />
                                 </div>
                                 <div className="flex flex-col text-left">
