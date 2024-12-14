@@ -36,27 +36,12 @@ export function HabitList({ habits }: HabitListProps) {
                             </div>
                             <div className="relative w-12 h-12 flex justify-center items-center">
                                 {/* Círculo de fundo */}
-                                <svg
-                                    className="absolute w-full h-full rotate-90"
-                                    viewBox="0 0 36 36"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <circle
-                                        cx="18"
-                                        cy="18"
-                                        r="14"
-                                        stroke="#d1d5db"
-                                        strokeWidth="3"
-                                        fill="none"
-                                    />
+                                <svg className="absolute w-full h-full rotate-90" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="18" cy="18" r="14" stroke="#d1d5db" strokeWidth="3" fill="none" />
                                 </svg>
 
                                 {/* Círculo de progresso */}
-                                <svg
-                                    className="absolute w-full h-full rotate-90"
-                                    viewBox="0 0 36 36"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
+                                <svg className="absolute w-full h-full rotate-90" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
                                     <circle
                                         cx="18"
                                         cy="18"
@@ -70,7 +55,6 @@ export function HabitList({ habits }: HabitListProps) {
                                     />
                                 </svg>
 
-                                {/* Botão de incremento */}
                                 <button
                                     onClick={() => checkHabit(habit._id)}
                                     className="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center text-white text-lg focus:outline-none hover:bg-gray-500 z-10"
@@ -80,7 +64,6 @@ export function HabitList({ habits }: HabitListProps) {
                             </div>
                         </div>
 
-                        {/* Heatmap */}
                         <Heatmap habits={habits} />
                     </div>
                 );
