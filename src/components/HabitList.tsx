@@ -1,29 +1,20 @@
 import { CheckIcon, PlusIcon } from 'lucide-react';
 import { Habit, habitIcons } from '../utils/habitData'
 import { Heatmap } from './Heatmap'
+import { checkHabit } from '@/utils/fakeApi';
 
 interface HabitListProps {
     habits: Habit[];
     onUpdateHabitProgress: (habitId: string, progress: number) => void;
 }
 
-export function HabitList({ habits, onUpdateHabitProgress }: HabitListProps) {
+export function HabitList({ habits }: HabitListProps) {
     const today = new Date().toISOString().split('T')[0];
-
-    // Função para lidar com o incremento do progresso
-    const handleIncrement = (habitId: string, currentProgress: number, goal: number) => {
-        const newProgress = currentProgress + 1;
-        if (newProgress > goal) {
-            onUpdateHabitProgress(habitId, 0); // Reset progress if goal is exceeded
-        } else {
-            onUpdateHabitProgress(habitId, newProgress);
-        }
-    };
 
     return (
         <div className="space-y-6">
             {habits.map((habit) => {
-                const todayProgress = habit.completedDates.filter((date) => date === today).length;
+                const todayProgress = habit.completedDates.get(today) || 0
 
                 // Calculando o comprimento da borda do círculo (perímetro)
                 const circleCircumference = 2 * Math.PI * 14;
@@ -81,7 +72,7 @@ export function HabitList({ habits, onUpdateHabitProgress }: HabitListProps) {
 
                                 {/* Botão de incremento */}
                                 <button
-                                    onClick={() => handleIncrement(habit._id, todayProgress, habit.goal)}
+                                    onClick={() => checkHabit(habit._id)}
                                     className="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center text-white text-lg focus:outline-none hover:bg-gray-500 z-10"
                                 >
                                     {todayProgress === habit.goal ? <CheckIcon /> : <PlusIcon />}
