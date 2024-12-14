@@ -1,4 +1,4 @@
-import { Activity } from 'lucide-react';
+import { CheckIcon, PlusIcon } from 'lucide-react';
 import { Habit, habitIcons } from '../utils/habitData'
 import { Heatmap } from './Heatmap'
 
@@ -29,7 +29,7 @@ export function HabitList({ habits, onUpdateHabitProgress }: HabitListProps) {
                 const circleCircumference = 2 * Math.PI * 14;
                 const progressOffset = (circleCircumference * (habit.goal - todayProgress)) / habit.goal;
 
-                const IconComponent = habitIcons.find(icon => icon.name === habit.icon)?.component || Activity; // Default to Activity if not found
+                const IconComponent = habitIcons.find(icon => icon.name === habit.icon)?.component as React.ElementType;
 
                 return (
                     <div key={habit._id} className="space-y-2">
@@ -84,7 +84,7 @@ export function HabitList({ habits, onUpdateHabitProgress }: HabitListProps) {
                                     onClick={() => handleIncrement(habit._id, todayProgress, habit.goal)}
                                     className="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center text-white text-lg focus:outline-none hover:bg-gray-500 z-10"
                                 >
-                                    {todayProgress === habit.goal ? '✔️' : '+'}
+                                    {todayProgress === habit.goal ? <CheckIcon /> : <PlusIcon />}
                                 </button>
                             </div>
                         </div>
