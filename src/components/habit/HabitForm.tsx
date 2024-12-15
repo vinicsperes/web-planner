@@ -26,7 +26,6 @@ export default function HabitForm({ closeDialog, onAddHabit }: HabitFormProps) {
     });
 
     const onSubmit = (data: HabitFormData) => {
-
         const newHabit: Habit = {
             _id: uuidv4(),
             name: data.name,
@@ -35,18 +34,11 @@ export default function HabitForm({ closeDialog, onAddHabit }: HabitFormProps) {
             color: data.color,
             goal: data.goal,
             completedDates: new Map<string, number>()
-        };
-
-        const result = createHabit(newHabit);
-
-        if (result.success) {
-            console.log("Habit created successfully:", result.value);
-            onAddHabit(newHabit); // Atualiza a lista de hábitos no estado pai
-            closeDialog()
-        } else {
-            console.error("Error creating habit:", result.error);
         }
-    };
+
+        onAddHabit(newHabit)
+        closeDialog()
+    }
 
     const goal = watch('goal');
 
