@@ -13,7 +13,7 @@ export function ProgressButton({ onClick, todayProgress, goal }: ProgressButtonP
     return (
         <button
             onClick={onClick}
-            className="w-12 h-12 bg-gray-600 rounded-full flex items-center justify-center text-white text-lg focus:outline-none hover:bg-gray-500 z-10"
+            className="relative flex justify-center w-12 h-12 bg-gray-600 rounded-full flex items-center justify-center text-white text-lg focus:outline-none hover:bg-gray-500 z-10"
             aria-label="Mark as completed or add progress"
         >
             {/* Barra de Progresso Circular */}

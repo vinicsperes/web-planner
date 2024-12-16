@@ -24,7 +24,7 @@ export function HabitWidget({ habit, onUpdateHabitProgress }: HabitProps) {
                     <IconComponent />
                 </div>
             </div>
-            <Heatmap habit={habit} color={habit.color} />
+            <Heatmap habit={habit} type={'month'} />
 
             <ProgressButtonRetangular
                 onClick={() => onUpdateHabitProgress(habit._id)}

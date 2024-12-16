@@ -151,16 +151,17 @@ export const colorVariants: Record<string, Record<number, string>> = {
     },
   };
 
-export function getLastNDays(n: number): string[] {
-    const result = []
+  export function getLastNDays(n: number): string[] {
+    const result = [];
+    const today = new Date();
 
     for (let i = 0; i < n; i++) {
-        const d = new Date()
-        d.setDate(d.getDate() - i)
-        result.unshift(d.toLocaleDateString())
+        const date = new Date(today);
+        date.setDate(today.getDate() - i);
+        result.unshift(date.toLocaleDateString());
     }
 
-    return result
+    return result;
 }
 
 export function formatDate(date: Date): string {
