@@ -1,13 +1,13 @@
-import { getLastNDays, Habit } from "../utils/habitData";
+import { getLastNDays, Habit, colorVariants } from "../utils/habitData";
 
 interface HeatmapProps {
     habits: Habit[]
-    color?: string
+    color: string
 }
 
 export function Heatmap({ habits, color }: HeatmapProps) {
     const lastNDays = getLastNDays(30)
-    const completeColor = color ?? 'bg-green-500'
+    const completeColor = colorVariants[color]?.[400] ?? 'bg-green-500'
 
     return (
         <div className="grid grid-cols-7 w-32 gap-1">

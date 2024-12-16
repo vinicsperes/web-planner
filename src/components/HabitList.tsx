@@ -1,5 +1,5 @@
 import { CheckIcon, PlusIcon } from 'lucide-react';
-import { Habit, habitIcons } from '../utils/habitData'
+import { Habit, habitIcons, colorVariants } from '../utils/habitData'
 import { Heatmap } from './Heatmap'
 
 interface HabitListProps {
@@ -19,12 +19,12 @@ export function HabitList({ habits, onUpdateHabitProgress }: HabitListProps) {
                 const progressOffset = (circleCircumference * (habit.goal - todayProgress)) / habit.goal;
 
                 const IconComponent = habitIcons.find(icon => icon.name === habit.icon)?.component as React.ElementType;
-
+                
                 return (
                     <div key={habit._id} className="space-y-2">
                         <div className="flex items-center gap-3 justify-between">
                             <div className='flex gap-3'>
-                                <div className={`w-10 h-10 rounded-md flex items-center justify-center text-white text-xl ${habit.color.concat('/20')}`}>
+                                <div className={`w-10 h-10 rounded-md flex items-center justify-center text-white text-xl ${colorVariants[habit.color][700]}`}>
                                     <IconComponent />
                                 </div>
                                 <div className="flex flex-col text-left">

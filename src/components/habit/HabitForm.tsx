@@ -9,7 +9,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 import { createHabit } from '../../utils/fakeApi';
-import { Habit, HabitFormData, habitColors as colors, habitIcons as icons } from '../../utils/habitData';
+import { Habit, HabitFormData, colorVariants, habitColors as colors, habitIcons as icons } from '../../utils/habitData';
 
 type HabitFormProps = {
     closeDialog: () => void;
@@ -132,7 +132,8 @@ export default function HabitForm({ closeDialog, onAddHabit }: HabitFormProps) {
                                     style={{ width: "40px", height: "40px" }}
                                 >
                                     <div
-                                        className={`h-6 w-6 ${color} rounded-md m-1`}
+                                        className={`h-6 w-6 ${colorVariants[color]?.[400]} rounded-md m-1`}
+
                                     />
                                 </Label>
                             </div>
