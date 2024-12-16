@@ -8,8 +8,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
-import { createHabit } from '../../utils/fakeApi';
-import { Habit, HabitFormData, colorVariants, habitColors as colors, habitIcons as icons } from '../../utils/habitData';
+import { Habit, HabitFormData, colorVariants, habitColors as colors, habitIcons as icons } from '@/utils/habitData';
 
 type HabitFormProps = {
     closeDialog: () => void;
@@ -33,14 +32,14 @@ export default function HabitForm({ closeDialog, onAddHabit }: HabitFormProps) {
             icon: data.icon,
             color: data.color,
             goal: data.goal,
-            completedDates: new Map<string, number>()
+            completedDates: {}
         }
 
         onAddHabit(newHabit)
         closeDialog()
     }
 
-    const goal = watch('goal');
+    const goal = watch('goal')
 
     return (
         <ScrollArea className="h-[500px] pr-8">
@@ -86,7 +85,6 @@ export default function HabitForm({ closeDialog, onAddHabit }: HabitFormProps) {
                     </div>
                 </div>
 
-                {/* Icon */}
                 <div className="space-y-2">
                     <Label className='text-zinc-300'>Select an icon</Label>
                     <RadioGroup
@@ -112,7 +110,6 @@ export default function HabitForm({ closeDialog, onAddHabit }: HabitFormProps) {
                     </RadioGroup>
                 </div>
 
-                {/* Color */}
                 <div className="space-y-2">
                     <Label className='text-zinc-300'>Select a color</Label>
                     <RadioGroup

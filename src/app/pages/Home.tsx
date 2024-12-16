@@ -1,5 +1,5 @@
-import { Heatmap } from '@/components/Heatmap'
-import { HabitList } from '@/components/HabitList'
+import { Heatmap } from '@/components/widgets/habit/Heatmap'
+import { HabitList } from '@/components/widgets/habit/HabitList'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import MultiStepDialog from '@/components/MultiStepDialog'
 import { Habit } from '@/utils/habitData'

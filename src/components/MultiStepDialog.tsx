@@ -3,9 +3,9 @@
 import { useState } from 'react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
-import HabitForm from './habit/HabitForm'
 import { ChevronLeft, Notebook, Plus, SquareCheck, Type, BookImage } from 'lucide-react'
 import { Habit } from '@/utils/habitData'
+import HabitForm from './widgets/habit/HabitForm'
 
 type Step = 'initial' | 'habits' | 'notes' | 'teste' | 'header' | 'image'
 

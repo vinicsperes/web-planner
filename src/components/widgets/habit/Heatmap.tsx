@@ -1,4 +1,4 @@
-import { getLastNDays, Habit, colorVariants } from "../utils/habitData";
+import { getLastNDays, Habit, colorVariants } from "../../../utils/habitData";
 
 interface HeatmapProps {
     habit: Habit
@@ -9,7 +9,7 @@ export function Heatmap({ habit }: HeatmapProps) {
     const lastNDays = getLastNDays(30)
 
     return (
-        <div className="grid grid-cols-7 w-32 gap-1">
+        <div className="grid grid-cols-7 w-32 gap-[3px]">
             {lastNDays.map((date) => {
                 const completedCount = habit.completedDates[date] || 0
                 const progressLevel = completedCount / habit.goal;
