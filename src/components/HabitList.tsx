@@ -13,7 +13,7 @@ export function HabitList({ habits, onUpdateHabitProgress }: HabitListProps) {
     return (
         <div className="space-y-6">
             {habits.map((habit) => {
-                const todayProgress = habit.completedDates.get(today) || 0
+                const todayProgress = habit.completedDates[today] || 0
 
                 const circleCircumference = 2 * Math.PI * 14
                 const progressOffset = (circleCircumference * (habit.goal - todayProgress)) / habit.goal;
@@ -59,8 +59,8 @@ export function HabitList({ habits, onUpdateHabitProgress }: HabitListProps) {
                                 </button>
                             </div>
                         </div>
-
-                        <Heatmap habits={habits} color={habit.color} />
+                    
+                        <Heatmap habit={habit} color={habit.color} />
                     </div>
                 )
             })}

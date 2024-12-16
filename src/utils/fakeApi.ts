@@ -5,22 +5,12 @@ type Result<T, E> =
     | { success: false; error: E }
 
 function getHabits(): Habit[] {
-    const storedString = localStorage.getItem('habits') || '[]'
-    const habits: Habit[] = JSON.parse(storedString)
-
-    return habits.map(habit => ({
-        ...habit,
-        completedDates: new Map(Object.entries(habit.completedDates || {}))
-    }))
+    const storedString = localStorage.getItem('habits') || '[]';
+    return JSON.parse(storedString)
 }
-
+    
 function setHabits(habits: Habit[]): void {
-    const habitsString = JSON.stringify(
-        habits.map(habit => ({
-            ...habit,
-            completedDates: Object.fromEntries(habit.completedDates)
-        }))
-    )
+    const habitsString = JSON.stringify(habits);
 
     localStorage.setItem('habits', habitsString)
 }
@@ -79,7 +69,7 @@ export function checkHabit(habitId: string): Result<Habit, string> {
 
     const today = new Date().toLocaleDateString()
     const completedMap = checkedHabit.completedDates
-    const completedDateCount = completedMap.get(today)
+    const completedDateCount = completedMap[today]
 
     const newCount =
         !completedDateCount ? 1
@@ -87,9 +77,8 @@ export function checkHabit(habitId: string): Result<Habit, string> {
                 ? 0
                 : completedDateCount + 1
 
-    completedMap.set(today, newCount)
-    console.log(checkedHabit)
-
+    completedMap[today] = newCount
+    
     const updatedHabits = habits.map(habit => {
         if (habit._id === habitId) {
             return checkedHabit

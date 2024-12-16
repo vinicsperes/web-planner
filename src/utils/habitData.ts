@@ -1,7 +1,5 @@
 import { Activity, Book, Coffee, Dumbbell, Music, Heart, Sun, Moon, Star, Cloud, Zap, Droplet, Flame, Leaf, Feather, Eye, Camera, Check, Bell, Gift, Target } from 'lucide-react'
 
-type DateCountMap = Map<string, number>
-
 export interface Habit {
     _id: string
     name: string
@@ -10,7 +8,7 @@ export interface Habit {
     goal: number
     category?: string
     daily_checks?: number
-    completedDates: DateCountMap
+    completedDates: { [key: string]: number }
     color: string
 }
 

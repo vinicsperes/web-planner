@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react'
 
 export default function Home() {
     const [habits, setHabits] = useState<Habit[]>([])
-
+    
     const handleAddHabit = (newHabit: Habit) => {
         const result = createHabit(newHabit)
 
@@ -45,7 +45,7 @@ export default function Home() {
                         <CardTitle>Overall Progress</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <Heatmap habits={habits} />
+                        {/* <Heatmap habits={habits} color='green'/> */}
                     </CardContent>
                 </Card>
                 <Card>
