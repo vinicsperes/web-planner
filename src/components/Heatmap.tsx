@@ -13,20 +13,20 @@ export function Heatmap({ habit }: HeatmapProps) {
             {lastNDays.map((date) => {
                 const completedCount = habit.completedDates[date] || 0
                 const progressLevel = completedCount / habit.goal;
-
-                let squareColor = "bg-gray-500"; 
-                if (progressLevel >= 1) {
-                    squareColor = colorVariants[habit.color][500]
-                } else if (progressLevel >= 0.75) {
-                    squareColor = colorVariants[habit.color][600]
-                } else if (progressLevel > 0) {
-                    squareColor = colorVariants[habit.color][700]
-                }
+                
+                const squareColor = progressLevel != 0 ? colorVariants[habit.color][500] : 'bg-gray-800'
+                const opacityClass = progressLevel >= 1
+                    ? "opacity-100"
+                    : progressLevel >= 0.75
+                        ? "opacity-50"
+                        : progressLevel > 0
+                            ? "opacity-25"
+                            : null
 
                 return (
                     <div
                         key={date}
-                        className={`w-4 h-4 rounded-sm ${squareColor}`}
+                        className={`w-4 h-4 rounded-sm ${squareColor} ${opacityClass}`}
                         title={`${date}: ${completedCount}/${habit} habits completed`}
                     />
                 )
