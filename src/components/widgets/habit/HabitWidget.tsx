@@ -13,8 +13,8 @@ export function HabitWidget({ habit, onUpdateHabitProgress }: HabitProps) {
     const IconComponent = habitIcons.find(icon => icon.name === habit.icon)?.component as React.ElementType
 
     return (
-        <div className="space-y-2 w-32">
-            
+        <div className="space-y-2 w-36">
+
             <div className="flex justify-between mb-2.5">
                 <div className="flex flex-col text-left w-20 h-10">
                     <span className="text-gray-200 text-base break-word leading-4 mt-0.5">{habit.name}</span>
