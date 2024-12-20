@@ -5,6 +5,7 @@ import MultiStepDialog from '@/components/MultiStepDialog'
 import { Habit } from '@/utils/habitData'
 import { checkHabit, createHabit, fetchHabits } from '@/utils/fakeApi'
 import { useEffect, useState } from 'react'
+import GridTest from '@/components/GridTest'
 
 export default function Home() {
     const [habits, setHabits] = useState<Habit[]>([])
@@ -45,6 +46,7 @@ export default function Home() {
                         <CardTitle>Overall Progress</CardTitle>
                     </CardHeader>
                     <CardContent>
+                        <GridTest />
                         {/* <Heatmap habits={habits} color='green'/> */}
                     </CardContent>
                 </Card>
