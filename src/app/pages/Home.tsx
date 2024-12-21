@@ -1,15 +1,18 @@
-import { Heatmap } from '@/components/widgets/habit/Heatmap'
-import { HabitList } from '@/components/widgets/habit/HabitList'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import MultiStepDialog from '@/components/MultiStepDialog'
 import { Habit } from '@/utils/habitData'
 import { checkHabit, createHabit, fetchHabits } from '@/utils/fakeApi'
 import { useEffect, useState } from 'react'
-import GridTest from '@/components/GridTest'
+
+import { GridStack } from 'gridstack'
+import 'gridstack/dist/gridstack.min.css'
+import { HabitWidget } from '@/components/widgets/habit/HabitWidget'
+import '../../globals.css'
+
 
 export default function Home() {
     const [habits, setHabits] = useState<Habit[]>([])
-    
+
     const handleAddHabit = (newHabit: Habit) => {
         const result = createHabit(newHabit)
 
@@ -34,6 +37,21 @@ export default function Home() {
         else console.log(habitsResult.error)
     }, [])
 
+    useEffect(() => {
+        if (habits.length > 0) {
+            const grid = document.querySelector('.grid-stack') as HTMLElement
+            if (grid) {
+                GridStack.init({
+                    float: true,
+                    staticGrid: false,
+                    resizable: 'e, s, n, w' as any,
+                    cellHeight: 200,
+                    alwaysShowResizeHandle: false
+                }, grid)
+            }
+        }
+    }, [habits])
+
     return (
         <div className="container mx-2 p-4">
             <div className="flex justify-between items-center p-4">
@@ -41,21 +59,22 @@ export default function Home() {
                 <MultiStepDialog onAddHabit={handleAddHabit} />
             </div>
             <div className="grid gap-6 md:grid-cols-2">
-                <Card>
-                    <CardHeader>
-                        <CardTitle>Overall Progress</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <GridTest />
-                        {/* <Heatmap habits={habits} color='green'/> */}
-                    </CardContent>
-                </Card>
+                <div className="grid-stack bg-gray-700 rounded-lg">
+                    {habits.map((habit) => (
+                        <div key={habit._id} className="grid-stack-item" data-gs-x="0" data-gs-y="0" data-gs-width="4" data-gs-height="2">
+                            <div className="grid-stack-item-content bg-gray-900">
+                                <HabitWidget key={habit._id} habit={habit} onUpdateHabitProgress={handleUpdateProgress} />
+                                {/* <HabitWidgetYear key={habit._id} habit={habit} onUpdateHabitProgress={onUpdateHabitProgress} /> */}
+                            </div>
+                        </div>
+                    ))}
+                </div>
                 <Card>
                     <CardHeader>
                         <CardTitle>Today's Habits</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <HabitList habits={habits} onUpdateHabitProgress={handleUpdateProgress} />
+                        {/* <HabitList habits={habits} onUpdateHabitProgress={handleUpdateProgress} /> */}
                     </CardContent>
                 </Card>
             </div>
