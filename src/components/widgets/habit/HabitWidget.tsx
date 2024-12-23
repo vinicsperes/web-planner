@@ -15,14 +15,12 @@ export function HabitWidget({ habit, onUpdateHabitProgress }: HabitProps) {
     return (
         <div className="space-y-2 w-36">
 
-            <div className="flex justify-between mb-2.5">
-                <div className="flex flex-col text-left w-20 h-10">
-                    <span className="text-gray-200 text-base break-word leading-4 mt-0.5">{habit.name}</span>
-                    {/* <span className="text-gray-400 w-16 truncate text-xs" title={habit.description}>{habit.description}</span> */}
-                </div>
-                <div className={`w-10 h-10 rounded-md flex items-center justify-center text-white text-xl ${colorVariants[habit.color][700]}`}>
+            <div className="flex gap-2">
+                <div className={`shrink-0 w-10 h-10 rounded-md flex items-center justify-center text-white text-xl ${colorVariants[habit.color][700]}`}>
                     <IconComponent />
                 </div>
+                <p className="w-24 text-gray-200 text-sm text-left line-clamp-2 leading-4 mt-0.5 break-words">{habit.name}</p>
+                {/* <span className="text-gray-400 w-16 truncate text-xs" title={habit.description}>{habit.description}</span> */}
             </div>
             <Heatmap habit={habit} type={'month'} />
 
