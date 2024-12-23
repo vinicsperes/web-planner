@@ -16,12 +16,12 @@ export function HabitWidgetYear({ habit, onUpdateHabitProgress }: HabitProps) {
         <div className="space-y-2 w-full">
             <div className="flex justify-between">
                 <div className="flex">
-                    <div className={`w-10 h-10 rounded-md flex items-center justify-center text-white text-xl ${colorVariants[habit.color][700]}`}>
+                    <div className={`w-10 h-10 rounded-md flex items-center justify-center text-white text-xl ${colorVariants[habit.color][700]} shrink-0`}>
                         <IconComponent />
                     </div>
                     <div className="flex flex-col text-left ml-3">
-                        <span className="text-gray-200 text-base break-word leading-4 mt-0.5">{habit.name}</span>
-                        <span className="text-gray-200 text-sm">{habit.description}</span>
+                        <p className="w-50 text-gray-200 text-normal text-left line-clamp-2 leading-4 mt-0.5 break-all">{habit.name}</p>
+                        <p className="w-100 text-gray-200 text-sm text-left line-clamp-2 leading-4 mt-0.5 break-words">{habit.description}</p>
                     </div>
                 </div>
 

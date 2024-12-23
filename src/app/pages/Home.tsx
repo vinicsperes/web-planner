@@ -8,6 +8,7 @@ import { HabitWidget } from '@/components/widgets/habit/HabitWidget'
 import '../../globals.css'
 import { createSwapy, SlotItemMapArray, Swapy, utils } from "swapy"
 import '@/swapyStyles.css'
+import { HabitWidgetYear } from "@/components/widgets/habit/HabitWidgetYear"
 
 export default function Home() {
     const [habits, setHabits] = useState<Habit[]>([])
@@ -77,23 +78,19 @@ export default function Home() {
                 <CardContent>
                     <div className="container" ref={containerRef}>
                         <div className="items">
-                            {slottedItems.map(({ slotId, itemId, item }) => {
-                                console.log(item);
-                                return (
-
-                                    <div className="slot" key={slotId} data-swapy-slot={slotId}>
-                                        {item &&
-                                            <div className="item" data-swapy-item={itemId} key={itemId}>
-                                                <div key={item._id} className="flex justify-center w-min p-3 rounded-lg bg-gray-900">
-                                                    <HabitWidget key={item._id} habit={item} onUpdateHabitProgress={handleUpdateProgress} />
-                                                    {/* <HabitWidgetYear key={habit._id} habit={habit} onUpdateHabitProgress={onUpdateHabitProgress} /> */}
-                                                </div>
-
+                            {slottedItems.map(({ slotId, itemId, item }) => (
+                                <div className="slot" key={slotId} data-swapy-slot={slotId}>
+                                    {item &&
+                                        <div className="item" data-swapy-item={itemId} key={itemId}>
+                                            <div key={item._id} className="flex justify-center w-min p-3 rounded-lg bg-gray-900">
+                                                {/* <HabitWidget key={item._id} habit={item} onUpdateHabitProgress={handleUpdateProgress} /> */}
+                                                <HabitWidgetYear key={item._id} habit={item} onUpdateHabitProgress={handleUpdateProgress} />
                                             </div>
-                                        }
-                                    </div>
-                                )
-                            })}
+
+                                        </div>
+                                    }
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </CardContent>

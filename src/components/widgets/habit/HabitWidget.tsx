@@ -20,7 +20,6 @@ export function HabitWidget({ habit, onUpdateHabitProgress }: HabitProps) {
                     <IconComponent />
                 </div>
                 <p className="w-24 text-gray-200 text-sm text-left line-clamp-2 leading-4 mt-0.5 break-words">{habit.name}</p>
-                {/* <span className="text-gray-400 w-16 truncate text-xs" title={habit.description}>{habit.description}</span> */}
             </div>
             <Heatmap habit={habit} type={'month'} />
 
