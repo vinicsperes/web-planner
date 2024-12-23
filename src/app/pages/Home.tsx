@@ -2,14 +2,43 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import MultiStepDialog from '@/components/MultiStepDialog'
 import { Habit } from '@/utils/habitData'
 import { checkHabit, createHabit, fetchHabits } from '@/utils/fakeApi'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
 import { HabitWidget } from '@/components/widgets/habit/HabitWidget'
 import '../../globals.css'
-
+import { createSwapy, SlotItemMapArray, Swapy, utils } from "swapy"
+import '@/swapyStyles.css'
 
 export default function Home() {
     const [habits, setHabits] = useState<Habit[]>([])
+
+    const [slotItemMap, setSlotItemMap] = useState<SlotItemMapArray>(utils.initSlotItemMap(habits, '_id'))
+    const slottedItems = useMemo(() => utils.toSlottedItems(habits, '_id', slotItemMap), [habits, slotItemMap])
+    const swapyRef = useRef<Swapy | null>(null)
+
+    const containerRef = useRef<HTMLDivElement>(null)
+
+    useEffect(() => utils.dynamicSwapy(swapyRef.current, habits, '_id', slotItemMap, setSlotItemMap), [habits])
+
+    useEffect(() => {
+        swapyRef.current = createSwapy(containerRef.current!, {
+            manualSwap: true,
+            // animation: 'dynamic'
+            // autoScrollOnDrag: true,
+            // swapMode: 'drop',
+            // enabled: true,
+            // dragAxis: 'x',
+            // dragOnHold: true
+        })
+
+        swapyRef.current.onSwap((event) => {
+            setSlotItemMap(event.newSlotItemMap.asArray)
+        })
+
+        return () => {
+            swapyRef.current?.destroy()
+        }
+    }, [])
 
     const handleAddHabit = (newHabit: Habit) => {
         const result = createHabit(newHabit)
@@ -35,7 +64,6 @@ export default function Home() {
         else console.log(habitsResult.error)
     }, [])
 
-
     return (
         <div className="container mx-2 p-4">
             <div className="flex justify-between items-center p-4">
@@ -46,13 +74,28 @@ export default function Home() {
                 <CardHeader>
                     <CardTitle>Today's Habits</CardTitle>
                 </CardHeader>
-                <CardContent className="flex flex-wrap gap-3">
-                    {habits.map((habit) => (
-                        <div key={habit._id} className="flex justify-center w-min p-3 rounded-lg bg-gray-900">
-                            <HabitWidget key={habit._id} habit={habit} onUpdateHabitProgress={handleUpdateProgress} />
-                            {/* <HabitWidgetYear key={habit._id} habit={habit} onUpdateHabitProgress={onUpdateHabitProgress} /> */}
+                <CardContent>
+                    <div className="container" ref={containerRef}>
+                        <div className="items">
+                            {slottedItems.map(({ slotId, itemId, item }) => {
+                                console.log(item);
+                                return (
+
+                                    <div className="slot" key={slotId} data-swapy-slot={slotId}>
+                                        {item &&
+                                            <div className="item" data-swapy-item={itemId} key={itemId}>
+                                                <div key={item._id} className="flex justify-center w-min p-3 rounded-lg bg-gray-900">
+                                                    <HabitWidget key={item._id} habit={item} onUpdateHabitProgress={handleUpdateProgress} />
+                                                    {/* <HabitWidgetYear key={habit._id} habit={habit} onUpdateHabitProgress={onUpdateHabitProgress} /> */}
+                                                </div>
+
+                                            </div>
+                                        }
+                                    </div>
+                                )
+                            })}
                         </div>
-                    ))}
+                    </div>
                 </CardContent>
             </Card>
         </div>
