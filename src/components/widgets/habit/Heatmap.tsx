@@ -7,7 +7,7 @@ interface HeatmapProps {
 
 const getSquareClasses = (completedCount: number, goal: number, color: string) => {
     const progressLevel = completedCount / goal;
-    const squareColor = progressLevel !== 0 ? colorVariants[color][500] : 'bg-gray-800'
+    const squareColor = progressLevel !== 0 ? colorVariants[color][500].bg : 'bg-gray-800'
     const opacityClass = progressLevel >= 1
         ? "opacity-100"
         : progressLevel >= 0.75

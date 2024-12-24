@@ -8,6 +8,7 @@ import { HabitWidget } from '@/components/widgets/habit/HabitWidget'
 import '../../globals.css'
 import { createSwapy, SlotItemMapArray, Swapy, utils } from "swapy"
 import '@/swapyStyles.css'
+import { ThemeToggle } from "@/components/ThemeToggle"
 
 export default function Home() {
     const [habits, setHabits] = useState<Habit[]>([])
@@ -17,15 +18,14 @@ export default function Home() {
     const swapyRef = useRef<Swapy | null>(null)
 
     const containerRef = useRef<HTMLDivElement>(null)
-
     useEffect(() => utils.dynamicSwapy(swapyRef.current, habits, '_id', slotItemMap, setSlotItemMap), [habits])
 
     useEffect(() => {
         swapyRef.current = createSwapy(containerRef.current!, {
-            manualSwap: true,
-            // animation: 'dynamic'
+            manualSwap: true
+            // animation: 'dynamic',
             // autoScrollOnDrag: true,
-            // swapMode: 'drop',
+            // swapMode: "hover"
             // enabled: true,
             // dragAxis: 'x',
             // dragOnHold: true
@@ -68,6 +68,7 @@ export default function Home() {
         <div className="container mx-2 p-4">
             <div className="flex justify-between items-center p-4">
                 <h1 className="text-3xl font-bold mb-6">web-planner</h1>
+                <ThemeToggle />
                 <MultiStepDialog onAddHabit={handleAddHabit} />
             </div>
             <Card>

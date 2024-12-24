@@ -36,7 +36,7 @@ export default function MultiStepDialog({ onAddHabit }: MultiStepDialogProps) {
       <DialogTrigger asChild>
         <Button variant="default">
           <Plus />
-          <span>Add new habit</span>
+          <span>New Widget</span>
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[400px] sm:max-h-[900px] border-zinc-900">

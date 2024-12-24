@@ -12,12 +12,13 @@ export function ProgressButtonRetangular({
     goal,
 }: ProgressButtonRetangularProps) {
     const progressPercentage = (todayProgress / goal) * 100
+    const checkButtonColor = todayProgress === goal ? 'bg-green-700 hover:bg-green-600' : 'bg-gray-600 hover:bg-gray-500'
 
     return (
         <div className="flex flex-col items-center w-full">
             <button
                 onClick={onClick}
-                className="w-full h-6 bg-gray-600 rounded-sm flex items-center justify-center text-white text-lg focus:outline-none hover:bg-gray-500"
+                className={`w-full h-6 rounded-sm flex items-center justify-center ${checkButtonColor} text-white text-lg focus:outline-none`}
                 aria-label="Mark as completed or add progress"
             >
                 {todayProgress === goal ? <CheckIcon /> : <PlusIcon />}

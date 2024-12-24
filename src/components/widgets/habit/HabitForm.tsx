@@ -129,7 +129,7 @@ export default function HabitForm({ closeDialog, onAddHabit }: HabitFormProps) {
                                     style={{ width: "40px", height: "40px" }}
                                 >
                                     <div
-                                        className={`h-6 w-6 ${colorVariants[color]?.[400]} rounded-md m-1`}
+                                        className={`h-6 w-6 ${colorVariants[color]?.[400].bg} rounded-md m-1`}
 
                                     />
                                 </Label>

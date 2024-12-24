@@ -2,6 +2,7 @@ import { colorVariants, Habit, habitIcons } from '@/utils/habitData';
 import { Heatmap } from './Heatmap';
 import { ProgressButtonRetangular } from './ProgressButtonRectangular';
 import { ChevronDown, GripHorizontal } from 'lucide-react';
+import { WidgetActions } from './WidgetActions';
 
 interface HabitProps {
     habit: Habit
@@ -16,8 +17,8 @@ export function HabitWidget({ habit, onUpdateHabitProgress }: HabitProps) {
     return (
         <div className="space-y-2 w-36 mx-2 mb-2 rounded-lg bg-gray-900">
             <div className="flex justify-between">
-                <GripHorizontal className='text-gray-950 cursor-grab active:cursor-grabbing'  data-swapy-handle/>
-                <ChevronDown className='text-gray-700 hover:text-gray-500 cursor-pointer' />
+                <GripHorizontal className='text-gray-950 cursor-grab active:cursor-grabbing hover:text-gray-800'  data-swapy-handle/>
+                 <WidgetActions />
             </div>
             <div className="flex gap-2">
                 <div className={`shrink-0 w-10 h-10 rounded-md flex items-center justify-center text-white text-xl ${colorVariants[habit.color][700].bg}`}>
