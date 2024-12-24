@@ -1,7 +1,6 @@
 import { colorVariants, Habit, habitIcons } from '@/utils/habitData';
 import { Heatmap } from './Heatmap';
-import { ProgressButtonRetangular } from './ProgressButtonRectangular';
-import { ChevronDown, GripHorizontal } from 'lucide-react';
+import { ProgressButtonRetangular } from './ProgressButton';
 import { WidgetActions } from './WidgetActions';
 
 interface HabitProps {

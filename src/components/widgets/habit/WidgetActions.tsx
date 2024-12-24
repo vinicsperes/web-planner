@@ -1,5 +1,3 @@
-"use client"
-
 import * as React from "react"
 import { Calendar, ChevronDown, Tags, Trash, User } from "lucide-react"
 

@@ -10,6 +10,7 @@ import { createSwapy, SlotItemMapArray, Swapy, utils } from "swapy"
 import '@/swapyStyles.css'
 import { ThemeToggle } from "@/components/ThemeToggle"
 import RearrangeWidgetsButton from "@/components/RearrangeWidgetsButton"
+import { EmbbededPlayer } from "@/components/spotify/EmbbededPlayer"
 
 export default function Home() {
     const [habits, setHabits] = useState<Habit[]>([])
@@ -94,6 +95,9 @@ export default function Home() {
                                 </div>
                             ))}
                         </div>
+                    </div>
+                    <div>
+                        <EmbbededPlayer />
                     </div>
                 </CardContent>
             </Card>
