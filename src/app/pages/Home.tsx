@@ -11,6 +11,7 @@ import '@/swapyStyles.css'
 import { ThemeToggle } from "@/components/ThemeToggle"
 import RearrangeWidgetsButton from "@/components/RearrangeWidgetsButton"
 import { EmbbededPlayer } from "@/components/spotify/EmbbededPlayer"
+import { DraggableWidget } from "@/components/widgets/DragWidget"
 
 export default function Home() {
     const [habits, setHabits] = useState<Habit[]>([])
@@ -86,11 +87,12 @@ export default function Home() {
                             {slottedItems.map(({ slotId, itemId, item }) => (
                                 <div className="slot" key={slotId} data-swapy-slot={slotId}>
                                     {item &&
-                                        <div className={`item bg-gray-900 ${isDragEnabled ? "cursor-grab active:cursor-grabbing" : ""}`} data-swapy-item={itemId} key={itemId}>
-                                            <div className={`${isDragEnabled && "pointer-events-none"}`}>
-                                                <HabitWidget key={item._id} habit={item} onUpdateHabitProgress={handleUpdateProgress} />
-                                            </div>
-                                        </div>
+                                        <DraggableWidget
+                                            itemId={itemId}
+                                            isDragEnabled={isDragEnabled}
+                                        >
+                                            <HabitWidget key={item._id} habit={item} onUpdateHabitProgress={handleUpdateProgress} />
+                                        </DraggableWidget>
                                     }
                                 </div>
                             ))}
@@ -101,6 +103,6 @@ export default function Home() {
                     </div>
                 </CardContent>
             </Card>
-        </div>
+        </div >
     )
 }
