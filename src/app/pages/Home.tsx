@@ -9,6 +9,7 @@ import '../../globals.css'
 import { createSwapy, SlotItemMapArray, Swapy, utils } from "swapy"
 import '@/swapyStyles.css'
 import { ThemeToggle } from "@/components/ThemeToggle"
+import RearrangeWidgetsButton from "@/components/RearrangeWidgetsButton"
 
 export default function Home() {
     const [habits, setHabits] = useState<Habit[]>([])
@@ -16,13 +17,15 @@ export default function Home() {
     const [slotItemMap, setSlotItemMap] = useState<SlotItemMapArray>(utils.initSlotItemMap(habits, '_id'))
     const slottedItems = useMemo(() => utils.toSlottedItems(habits, '_id', slotItemMap), [habits, slotItemMap])
     const swapyRef = useRef<Swapy | null>(null)
+    const [isDragEnabled, setIsDragEnabled] = useState(true); // Add this state
 
     const containerRef = useRef<HTMLDivElement>(null)
     useEffect(() => utils.dynamicSwapy(swapyRef.current, habits, '_id', slotItemMap, setSlotItemMap), [habits])
 
     useEffect(() => {
         swapyRef.current = createSwapy(containerRef.current!, {
-            manualSwap: true
+            manualSwap: true,
+            enabled: isDragEnabled
             // animation: 'dynamic',
             // autoScrollOnDrag: true,
             // swapMode: "hover"
@@ -38,7 +41,7 @@ export default function Home() {
         return () => {
             swapyRef.current?.destroy()
         }
-    }, [])
+    }, [isDragEnabled])
 
     const handleAddHabit = (newHabit: Habit) => {
         const result = createHabit(newHabit)
@@ -69,6 +72,7 @@ export default function Home() {
             <div className="flex justify-between items-center p-4">
                 <h1 className="text-3xl font-bold mb-6">web-planner</h1>
                 <ThemeToggle />
+                <RearrangeWidgetsButton setIsDragEnabled={setIsDragEnabled} isDragEnabled={isDragEnabled} />
                 <MultiStepDialog onAddHabit={handleAddHabit} />
             </div>
             <Card>
@@ -81,9 +85,11 @@ export default function Home() {
                             {slottedItems.map(({ slotId, itemId, item }) => (
                                 <div className="slot" key={slotId} data-swapy-slot={slotId}>
                                     {item &&
-                                        <div className="item bg-gray-900" data-swapy-item={itemId} key={itemId}>
-                                            <HabitWidget key={item._id} habit={item} onUpdateHabitProgress={handleUpdateProgress} />
-                                            {/* <HabitWidgetYear key={item._id} habit={item} onUpdateHabitProgress={handleUpdateProgress} /> */}
+                                        <div className={`item bg-gray-900 ${isDragEnabled ? "cursor-grab active:cursor-grabbing" : ""}`} data-swapy-item={itemId} key={itemId}>
+                                            <div className={`${isDragEnabled ? "pointer-events-none" : ""}`}>
+                                                <HabitWidget key={item._id} habit={item} onUpdateHabitProgress={handleUpdateProgress} />
+                                                {/* <HabitWidgetYear key={item._id} habit={item} onUpdateHabitProgress={handleUpdateProgress} /> */}
+                                            </div>
                                         </div>
                                     }
                                 </div>
