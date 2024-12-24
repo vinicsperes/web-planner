@@ -86,9 +86,8 @@ export default function Home() {
                                 <div className="slot" key={slotId} data-swapy-slot={slotId}>
                                     {item &&
                                         <div className={`item bg-gray-900 ${isDragEnabled ? "cursor-grab active:cursor-grabbing" : ""}`} data-swapy-item={itemId} key={itemId}>
-                                            <div className={`${isDragEnabled ? "pointer-events-none" : ""}`}>
+                                            <div className={`${isDragEnabled && "pointer-events-none"}`}>
                                                 <HabitWidget key={item._id} habit={item} onUpdateHabitProgress={handleUpdateProgress} />
-                                                {/* <HabitWidgetYear key={item._id} habit={item} onUpdateHabitProgress={handleUpdateProgress} /> */}
                                             </div>
                                         </div>
                                     }
