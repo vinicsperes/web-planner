@@ -44,15 +44,15 @@ export function HabitCalendar({ habit, onUpdateHabitProgress }: HabitCalendarPro
   const progressPercentage = (todayProgress / habit.goal) * 100
 
   const IconComponent = habitIcons.find(icon => icon.name === habit.icon)?.component as React.ElementType
-  const checkButtonColor = todayProgress === habit.goal ? 'bg-green-700 hover:bg-green-600' : 'bg-gray-600 hover:bg-gray-500'
 
   return (
-    <Card className="rounded-xl">
+    <Card className="border bg-card dark:bg-card-dark rounded-xl">
       <CardHeader>
-        <CardTitle className="flex items-center space-x-2">
-          <IconComponent className={`${colorVariants[habit.color][950].text}`} />
-
-          <span>{habit.name}</span>
+        <CardTitle className="dark:text-card-foreground flex items-center space-x-2">
+          <div className={`shrink-0 w-10 h-10 rounded-md flex items-center justify-center text-white text-xl ${colorVariants[habit.color][700].bg}`}>
+            <IconComponent className={`${colorVariants[habit.color][950].text}`} />
+          </div>
+          <p>{habit.name}</p>
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -64,7 +64,7 @@ export function HabitCalendar({ habit, onUpdateHabitProgress }: HabitCalendarPro
           modifiersStyles={{
             today: { backgroundColor: "hsl(var(--primary) / 0.1)" },
           }}
-          className="rounded-md border"
+          className="dark:text-card-foreground dark:card rounded-md border"
           components={{
             Day: ({ date, ...props }) => {
               const isCurrentMonth = isSameMonth(date, props.displayMonth)
