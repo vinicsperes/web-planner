@@ -7,6 +7,7 @@ import { Progress } from "@/components/ui/progress"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 
 import { colorVariants, Habit, habitIcons } from "@/utils/habitData"
+import { CheckIcon, PlusIcon } from "lucide-react"
 
 
 interface HabitCalendarProps {
@@ -43,6 +44,7 @@ export function HabitCalendar({ habit, onUpdateHabitProgress }: HabitCalendarPro
   const progressPercentage = (todayProgress / habit.goal) * 100
 
   const IconComponent = habitIcons.find(icon => icon.name === habit.icon)?.component as React.ElementType
+  const checkButtonColor = todayProgress === habit.goal ? 'bg-green-700 hover:bg-green-600' : 'bg-gray-600 hover:bg-gray-500'
 
   return (
     <Card className="rounded-xl">
@@ -87,7 +89,9 @@ export function HabitCalendar({ habit, onUpdateHabitProgress }: HabitCalendarPro
           <Progress value={progressPercentage} className="flex-grow" />
           <span className="text-sm font-medium">{todayProgress}/{habit.goal}</span>
         </div>
-        <Button onClick={() => onUpdateHabitProgress(habit._id)} className="w-full">Increment Habit</Button>
+        <Button variant='default' onClick={() => onUpdateHabitProgress(habit._id)} className="w-full" >
+          {todayProgress === habit.goal ? <CheckIcon /> : <>Increment Habit <PlusIcon /></>}
+        </Button>
       </CardFooter>
     </Card>
   )
