@@ -11,11 +11,13 @@ import '@/swapyStyles.css'
 import { ThemeToggle } from "@/components/ThemeToggle"
 import RearrangeWidgetsButton from "@/components/RearrangeWidgetsButton"
 import { EmbbededPlayer } from "@/components/spotify/EmbbededPlayer"
-import { DraggableWidget } from "@/components/widgets/DragWidget"
+import { DraggableWidget } from "@/components/widgets/DraggableWidget"
+import { HabitCalendar } from "@/components/HabitCalendar"
+import { Snail } from "lucide-react"
 
 export default function Home() {
     const [habits, setHabits] = useState<Habit[]>([])
-
+    
     const [slotItemMap, setSlotItemMap] = useState<SlotItemMapArray>(utils.initSlotItemMap(habits, '_id'))
     const slottedItems = useMemo(() => utils.toSlottedItems(habits, '_id', slotItemMap), [habits, slotItemMap])
     const swapyRef = useRef<Swapy | null>(null)
@@ -69,6 +71,14 @@ export default function Home() {
         else console.log(habitsResult.error)
     }, [])
 
+    const [exerciseData, setExerciseData] = useState({
+        "2024-12-20": 3,
+        "2024-12-21": 5,
+        "2024-12-22": 2,
+        "2024-12-23": 4,
+        "2024-12-24": 1
+    })
+
     return (
         <div className="container mx-2 p-4">
             <div className="flex justify-between items-center p-4">
@@ -100,6 +110,9 @@ export default function Home() {
                     </div>
                     <div>
                         <EmbbededPlayer />
+                    </div>
+                    <div>
+                        <HabitCalendar name="Exercise" icon={Snail} goal={5} initialData={exerciseData}/>
                     </div>
                 </CardContent>
             </Card>
