@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button';
 import { MoonIcon, SunIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
@@ -21,17 +22,18 @@ export const ThemeToggle = () => {
   };
 
   return (
-    <button
+    <Button
       onClick={toggleTheme}
-      className="flex items-center justify-center p-2 rounded-lg transition-colors 
-                bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
+      variant="ghost"
+      size="icon"
+      className="h-9 w-9"
       aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
     >
       {theme === 'light' ? (
-        <MoonIcon className="w-6 h-6 text-gray-800 dark:text-gray-200" />
+        <MoonIcon className="w-4 h-4" />
       ) : (
-        <SunIcon className="w-6 h-6 text-gray-800 dark:text-gray-200" />
+        <SunIcon className="w-4 h-4" />
       )}
-    </button>
+    </Button>
   );
 };

@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import MultiStepDialog from '@/components/MultiStepDialog'
+import MultiStepDialog from '@/components/NewWidgetDialog'
 import { Habit } from '@/utils/habitData'
 import { checkHabit, createHabit, fetchHabits } from '@/utils/fakeApi'
 import { useEffect, useMemo, useRef, useState } from 'react'
@@ -8,12 +8,13 @@ import { HabitWidget } from '@/components/widgets/habit/HabitWidget'
 import '../../globals.css'
 import { createSwapy, SlotItemMapArray, Swapy, utils } from "swapy"
 import '@/swapyStyles.css'
-import { ThemeToggle } from "@/components/ThemeToggle"
-import RearrangeWidgetsButton from "@/components/RearrangeWidgetsButton"
+import { ThemeToggle } from "@/components/floatingMenu/actions/ThemeToggle"
+import RearrangeWidgetsButton from "@/components/floatingMenu/actions/RearrangeWidgetsButton"
 import { EmbbededPlayer } from "@/components/spotify/EmbbededPlayer"
 import { DraggableWidget } from "@/components/widgets/DraggableWidget"
 import { HabitCalendar } from "@/components/HabitCalendar"
 import { Snail } from "lucide-react"
+import { FloatingMenu } from "@/components/floatingMenu/FloatingMenu"
 
 export default function Home() {
     const [habits, setHabits] = useState<Habit[]>([])
@@ -81,11 +82,9 @@ export default function Home() {
 
     return (
         <div className="container mx-2 p-4">
+            <FloatingMenu setIsDragEnabled={setIsDragEnabled} isDragEnabled={isDragEnabled} onAddHabit={handleAddHabit} />
             <div className="flex justify-between items-center p-4">
                 <h1 className="text-3xl font-bold mb-6">web-planner</h1>
-                <ThemeToggle />
-                <RearrangeWidgetsButton setIsDragEnabled={setIsDragEnabled} isDragEnabled={isDragEnabled} />
-                <MultiStepDialog onAddHabit={handleAddHabit} />
             </div>
             <Card>
                 <CardHeader>
