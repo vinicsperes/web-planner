@@ -45,7 +45,7 @@ export function HabitCalendar({ habit, onUpdateHabitProgress }: HabitCalendarPro
   const IconComponent = habitIcons.find(icon => icon.name === habit.icon)?.component as React.ElementType
 
   return (
-    <Card className="w-[300px] rounded-xl">
+    <Card className="rounded-xl">
       <CardHeader>
         <CardTitle className="flex items-center space-x-2">
           <IconComponent className={`${colorVariants[habit.color][950].text}`} />

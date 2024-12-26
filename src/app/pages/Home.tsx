@@ -68,12 +68,12 @@ export default function Home() {
     }, [])
 
     return (
-        <div>
+        <div className='w-screen h-screen p-5'>
             <FloatingMenu setIsDragEnabled={setIsDragEnabled} isDragEnabled={isDragEnabled} onAddHabit={handleAddHabit} />
             <div className="flex justify-between items-center p-4">
                 <h1 className="text-3xl font-bold mb-6">web-planner</h1>
             </div>
-            <div className="w-screen h-screen m-5" ref={containerRef}>
+            <div className="bg-slate-600 p-4" ref={containerRef}>
                 <div className="items">
                     {slottedItems.map(({ slotId, itemId, item }) => (
                         <div className="slot" key={slotId} data-swapy-slot={slotId}>

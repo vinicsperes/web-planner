@@ -20,7 +20,7 @@ type FloatingMenuProps = {
 
 export function FloatingMenu({ isDragEnabled, setIsDragEnabled, onAddHabit }: FloatingMenuProps) {
     return (
-        <div className="fixed bottom-4 left-1/2 -translate-x-1/2 flex items-center space-x-2 bg-background/80 backdrop-blur-sm rounded-lg p-2 shadow-lg">
+        <div className="fixed bottom-4 left-1/2 -translate-x-1/2 flex items-center space-x-2 bg-background/80 backdrop-blur-sm rounded-lg p-2 shadow-lg z-50">
             
             <NewHabitDialog onAddHabit={onAddHabit} />
 
