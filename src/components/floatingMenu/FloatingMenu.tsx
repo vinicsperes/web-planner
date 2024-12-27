@@ -1,15 +1,9 @@
-'use client'
-import { Plus, Settings, Music, Image, FileText, Heading, ListTodo } from 'lucide-react'
+import { Settings } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import { ThemeToggle } from './actions/ThemeToggle'
-import RearrangeWidgetsButton from './actions/RearrangeWidgetsButton'
 import { Habit } from '@/utils/habitData'
+
+import ThemeToggle from './actions/ThemeToggle'
+import RearrangeWidgetsButton from './actions/RearrangeWidgetsButton'
 import NewHabitDialog from '../NewWidgetDialog'
 
 type FloatingMenuProps = {

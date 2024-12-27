@@ -10,9 +10,9 @@
   }
 
   .items {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(299px, 1fr));
-    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
   }
 
   .item {

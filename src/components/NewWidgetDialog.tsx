@@ -1,5 +1,3 @@
-'use client'
-
 import { useState } from 'react'
 
 import { FileText, Heading, Image, ListTodo, Music, Plus } from 'lucide-react'
