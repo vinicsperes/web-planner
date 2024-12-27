@@ -1,5 +1,3 @@
-'use client'
-
 import { useState } from 'react'
 
 import { FileText, Heading, Image, ListTodo, Music, Plus } from 'lucide-react'
@@ -51,8 +49,8 @@ export default function NewWidgetDialog({ onAddHabit }: NewWidgetDialogProps) {
 
   const closeDialog = () => {
     setOpen(false);
-  };
-  ``
+  }
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DropdownMenu>
@@ -93,7 +91,7 @@ export default function NewWidgetDialog({ onAddHabit }: NewWidgetDialogProps) {
             <p>Create a new Habit!</p>
           </DialogTitle>
         </DialogHeader>
-        
+
         <ScrollArea className="h-[500px] pr-2">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 m-2">
             <div className="space-y-2">

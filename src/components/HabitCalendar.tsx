@@ -62,7 +62,7 @@ export function HabitCalendar({ habit, onUpdateHabitProgress }: HabitCalendarPro
           modifiersStyles={{
             today: { backgroundColor: "hsl(var(--primary) / 0.1)" },
           }}
-          className="dark:text-card-foreground dark:card rounded-md border"
+          className="p-0 dark:text-card-foreground dark:card rounded-md "
           components={{
             Day: ({ date, ...props }) => {
               const isCurrentMonth = isSameMonth(date, props.displayMonth)
