@@ -17,7 +17,7 @@ export default function Home() {
     const [slotItemMap, setSlotItemMap] = useState<SlotItemMapArray>(utils.initSlotItemMap(habits, '_id'))
     const slottedItems = useMemo(() => utils.toSlottedItems(habits, '_id', slotItemMap), [habits, slotItemMap])
     const swapyRef = useRef<Swapy | null>(null)
-    const [isDragEnabled, setIsDragEnabled] = useState(true); // Add this state
+    const [isDragEnabled, setIsDragEnabled] = useState<boolean>(false)
 
     const containerRef = useRef<HTMLDivElement>(null)
     useEffect(() => utils.dynamicSwapy(swapyRef.current, habits, '_id', slotItemMap, setSlotItemMap), [habits])

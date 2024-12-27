@@ -48,7 +48,7 @@ export function HabitCalendar({ habit, onUpdateHabitProgress }: HabitCalendarPro
   return (
     <Card className="border bg-card dark:bg-card-dark rounded-xl">
       <CardHeader>
-        <CardTitle className="dark:text-card-foreground flex items-center space-x-2">
+        <CardTitle className="text-card-foreground flex items-center space-x-2">
           <div className={`shrink-0 w-10 h-10 rounded-md flex items-center justify-center text-white text-xl ${colorVariants[habit.color][700].bg}`}>
             <IconComponent className={`${colorVariants[habit.color][950].text}`} />
           </div>
@@ -74,7 +74,7 @@ export function HabitCalendar({ habit, onUpdateHabitProgress }: HabitCalendarPro
                   className={[
                     "w-8 h-8 flex items-center justify-center rounded-xl",
                     isCurrentMonth ? "text-foreground" : "text-muted-foreground",
-                    getColorClass(date), 
+                    getColorClass(date),
                   ].join(" ")}
                 >
                   {date.getDate()}
