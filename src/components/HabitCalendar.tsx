@@ -3,12 +3,10 @@ import { format, isSameMonth } from "date-fns"
 
 import { Calendar } from "@/components/ui/calendar"
 import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 
 import { colorVariants, Habit, habitIcons } from "@/utils/habitData"
 import { CheckIcon, PlusIcon } from "lucide-react"
-
 
 interface HabitCalendarProps {
   habit: Habit
@@ -86,7 +84,15 @@ export function HabitCalendar({ habit, onUpdateHabitProgress }: HabitCalendarPro
       </CardContent>
       <CardFooter className="flex flex-col space-y-4">
         <div className="flex items-center space-x-4 w-full">
-          <Progress value={progressPercentage} className="flex-grow" />
+          <div className="relative w-full h-1 bg-gray-400 rounded-sm mt-1">
+            <div
+              className={`absolute top-0 left-0 h-full ${colorVariants[habit.color][600].bg} rounded-full`}
+              style={{
+                width: `${progressPercentage}%`,
+                transition: 'width 0.3s ease',
+              }}
+            />
+          </div>
           <span className="text-sm font-medium">{todayProgress}/{habit.goal}</span>
         </div>
         <Button variant='default' onClick={() => onUpdateHabitProgress(habit._id)} className="w-full" >
