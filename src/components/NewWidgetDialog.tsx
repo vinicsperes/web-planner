@@ -54,7 +54,7 @@ export default function NewWidgetDialog({ onAddHabit }: NewWidgetDialogProps) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DropdownMenu>
-        <DropdownMenuTrigger >
+        <DropdownMenuTrigger asChild>
           <Button variant="ghost" size="icon" className="h-9 w-9">
             <Plus className="h-4 w-4" />
             <span className="sr-only">Add item</span>
