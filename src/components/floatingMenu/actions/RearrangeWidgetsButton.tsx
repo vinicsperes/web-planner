@@ -14,7 +14,6 @@ export default function RearrangeWidgetsButton({ isDragEnabled, setIsDragEnabled
             className="h-9 w-9"
             variant="ghost"
             onClick={() => setIsDragEnabled((prev: boolean) => !prev)}
-            asChild
         >
             {isDragEnabled ?
                 <>

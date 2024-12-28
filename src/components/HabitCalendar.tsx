@@ -45,15 +45,16 @@ export function HabitCalendar({ habit, onUpdateHabitProgress }: HabitCalendarPro
 
   return (
     <Card className="border bg-card dark:bg-card-dark rounded-xl">
-      <CardHeader>
-        <CardTitle className="text-card-foreground flex items-center space-x-2">
-          <div className={`shrink-0 w-10 h-10 rounded-md flex items-center justify-center text-white text-xl ${colorVariants[habit.color][700].bg}`}>
-            <IconComponent className={`${colorVariants[habit.color][950].text}`} />
+      <CardHeader className="p-3">
+        <CardTitle className="text-card-foreground flex justify-between space-x-2">
+          <div className="flex gap-2 align-middle leading-normal">
+            <IconComponent className={`w-6 h-6 ${colorVariants[habit.color][500].text}`} />
+            <p>{habit.name}</p>
           </div>
-          <p>{habit.name}</p>
+          <span className="text-sm font-medium">{todayProgress}/{habit.goal}</span>
         </CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="p-3">
         <Calendar
           mode="single"
           modifiers={{
@@ -82,8 +83,8 @@ export function HabitCalendar({ habit, onUpdateHabitProgress }: HabitCalendarPro
           }}
         />
       </CardContent>
-      <CardFooter className="flex flex-col space-y-4">
-        <div className="flex items-center space-x-4 w-full">
+      <CardFooter className="flex px-3 pb-3 flex-col space-y-4">
+        <div className="flex items-center gap-2 w-full">
           <div className="relative w-full h-1 bg-gray-400 rounded-sm mt-1">
             <div
               className={`absolute top-0 left-0 h-full ${colorVariants[habit.color][600].bg} rounded-full`}
@@ -93,11 +94,10 @@ export function HabitCalendar({ habit, onUpdateHabitProgress }: HabitCalendarPro
               }}
             />
           </div>
-          <span className="text-sm font-medium">{todayProgress}/{habit.goal}</span>
+          <Button variant='outline' className="shrink-0" size={"icon"} onClick={() => onUpdateHabitProgress(habit._id)} >
+            {todayProgress === habit.goal ? <CheckIcon /> : <PlusIcon />}
+          </Button>
         </div>
-        <Button variant='default' onClick={() => onUpdateHabitProgress(habit._id)} className="w-full" >
-          {todayProgress === habit.goal ? <CheckIcon /> : <>Increment Habit <PlusIcon /></>}
-        </Button>
       </CardFooter>
     </Card>
   )
