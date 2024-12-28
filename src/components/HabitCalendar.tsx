@@ -45,7 +45,7 @@ export function HabitCalendar({ habit, onUpdateHabitProgress }: HabitCalendarPro
 
   return (
     <Card className="border bg-card dark:bg-card-dark rounded-xl">
-      <CardHeader className="p-3">
+      <CardHeader className="p-3 pb-0">
         <CardTitle className="text-card-foreground flex justify-between space-x-2">
           <div className="flex gap-2 align-middle leading-normal">
             <IconComponent className={`w-6 h-6 ${colorVariants[habit.color][500].text}`} />
@@ -63,7 +63,7 @@ export function HabitCalendar({ habit, onUpdateHabitProgress }: HabitCalendarPro
           modifiersStyles={{
             today: { backgroundColor: "hsl(var(--primary) / 0.1)" },
           }}
-          className="p-0 dark:text-card-foreground dark:card rounded-md "
+          className="p-0 dark:text-card-foreground dark:card rounded-md"
           components={{
             Day: ({ date, displayMonth, ...props }) => {
               const isCurrentMonth = isSameMonth(date, displayMonth)
@@ -71,7 +71,7 @@ export function HabitCalendar({ habit, onUpdateHabitProgress }: HabitCalendarPro
                 <div
                   {...props}
                   className={[
-                    "w-8 h-8 flex items-center justify-center rounded-xl",
+                    "w-6 h-6 flex items-center justify-center rounded-md m-[1px]",
                     isCurrentMonth ? "text-foreground" : "text-muted-foreground",
                     getColorClass(date),
                   ].join(" ")}
