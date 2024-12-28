@@ -11,7 +11,7 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <div className={'font-sans bg-background text-foreground'}>
+        <div className={'font-sans bg-background'}>
             {children}
         </div>
     )

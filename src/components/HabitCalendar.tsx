@@ -23,7 +23,7 @@ export function HabitCalendar({ habit, onUpdateHabitProgress }: HabitCalendarPro
     const progressLevel = count / habit.goal
 
     if (progressLevel === 0)
-      return "bg-zinc-200 dark:bg-zinc-900 bg-opacity-100"
+      return "bg-zinc-200 dark:bg-zinc-900 bg-opacity-100 text-zinc-800 dark:text-zinc-500 text-opacity-70"
 
     const opacityClass =
       progressLevel >= 1 ? "bg-opacity-100" :
