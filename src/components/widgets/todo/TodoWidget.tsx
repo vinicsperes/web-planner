@@ -36,7 +36,7 @@ const TodoItem = ({ task, toggleTask, addTask, moveTask, removeTask, level, pare
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className={`py-2 ${level > 0 ? 'ml-6' : ''}`}
+            className={`${level > 0 ? 'ml-6' : ''}`}
         >
             <div className="flex items-center space-x-2">
                 <Checkbox
@@ -104,7 +104,7 @@ const TodoItem = ({ task, toggleTask, addTask, moveTask, removeTask, level, pare
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.2 }}
-                        className={`flex items-center space-x-2 mt-2 ${level > 0 ? 'ml-6' : ''}`}
+                        className={`flex items-center ${level > 0 ? 'ml-6' : ''}`}
                     >
                         <CornerDownRight />
                         <input
