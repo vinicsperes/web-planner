@@ -10,7 +10,7 @@ import { FloatingMenu } from "@/components/floatingMenu/FloatingMenu"
 
 import '@/swapyStyles.css'
 import '../../globals.css'
-import { TodoWidget } from '@/components/widgets/todo/TodoWidget'
+import TodoWidget from '@/components/widgets/todo/TodoWidget'
 
 export default function Home() {
     const [habits, setHabits] = useState<Habit[]>([])
