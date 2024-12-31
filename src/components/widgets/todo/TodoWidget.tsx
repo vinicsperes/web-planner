@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { ChevronUp, ChevronDown, Check, Plus, Trash2 } from 'lucide-react';
+import { ChevronUp, ChevronDown, Check, Plus, Trash2, SquareCheckBig, CornerDownRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Task, useTodoList } from './hooks/useTodoList';
 import { useState } from 'react';
@@ -51,7 +51,7 @@ const TodoItem = ({ task, toggleTask, addTask, moveTask, removeTask, level, pare
                     <Button
                         variant="outline"
                         size="icon"
-                        className="w-4 h-6 rounded-sm"
+                        className="w-6 h-6 rounded-sm"
                         onClick={() => moveTask(task.id, 'up', parentId)}
                     >
                         <ChevronUp className="h-3 w-3" />
@@ -59,7 +59,7 @@ const TodoItem = ({ task, toggleTask, addTask, moveTask, removeTask, level, pare
                     <Button
                         variant="outline"
                         size="icon"
-                        className="w-4 h-6 rounded-sm"
+                        className="w-6 h-6 rounded-sm"
                         onClick={() => moveTask(task.id, 'down', parentId)}
                     >
                         <ChevronDown className="h-3 w-3" />
@@ -78,7 +78,7 @@ const TodoItem = ({ task, toggleTask, addTask, moveTask, removeTask, level, pare
                     <Button
                         variant="destructive"
                         size="icon"
-                        className="w-4 h-6 rounded-sm"
+                        className="w-6 h-6 rounded-sm"
                         onClick={() => removeTask(task.id, parentId)}
                     >
                         <Trash2 />
@@ -106,6 +106,7 @@ const TodoItem = ({ task, toggleTask, addTask, moveTask, removeTask, level, pare
                         transition={{ duration: 0.2 }}
                         className={`flex items-center space-x-2 mt-2 ${level > 0 ? 'ml-6' : ''}`}
                     >
+                        <CornerDownRight />
                         <input
                             value={newSubTodo}
                             onChange={(e) => setNewSubTodo(e.target.value)}
@@ -142,12 +143,15 @@ export const TodoWidget = () => {
     };
 
     return (
-        <Card className="w-full max-w-md">
-            <CardHeader>
-                <CardTitle>Cadastrar o nome da lista aqui</CardTitle>
+        <Card className="w-full max-w-md border bg-card dark:bg-card-dark rounded-xl">
+            <CardHeader className='px-3 pb-0'>
+                <CardTitle className='flex items-center justify-start gap-2'>
+                    <SquareCheckBig/>
+                    Cadastrar o nome da lista aqui
+                </CardTitle>
+                <Separator className="p" />
             </CardHeader>
-            <CardContent>
-                <Separator className="my-4" />
+            <CardContent className='p-3'>
                 <motion.div layout className="space-y-1">
                     <AnimatePresence>
                         {tasks.map((task) => (
@@ -178,11 +182,12 @@ export const TodoWidget = () => {
                                 className="border-b border-muted-foreground bg-transparent focus:outline-none text-sm flex-grow"
                             />
                             <Button
+                                variant={'secondary'}
                                 size="icon"
                                 className="h-6 w-6"
                                 onClick={handleAddTodo}
                             >
-                                <Check className="h-4 w-4" />
+                                <Plus className='w-full h-full' />
                             </Button>
                         </motion.div>
                     </AnimatePresence>
