@@ -36,7 +36,7 @@ const TodoItem = ({ task, toggleTask, addTask, moveTask, removeTask, level, pare
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className={`${level > 0 ? 'ml-6' : ''}`}
+            className={`space-y-1 ${level > 0 ? 'ml-6' : ''}`}
         >
             <div className="flex items-center space-x-2">
                 <Checkbox
@@ -152,7 +152,7 @@ export const TodoWidget = () => {
                 <Separator className="p" />
             </CardHeader>
             <CardContent className='p-3'>
-                <motion.div layout className="space-y-1">
+                <motion.div layout className="space-y-3">
                     <AnimatePresence>
                         {tasks.map((task) => (
                             <TodoItem
