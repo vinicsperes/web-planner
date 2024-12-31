@@ -144,7 +144,7 @@ export const TodoWidget = () => {
 
     return (
         <Card className="w-full max-w-md border bg-card dark:bg-card-dark rounded-xl">
-            <CardHeader className='px-3 pb-0'>
+            <CardHeader className='p-3 pb-0'>
                 <CardTitle className='flex items-center justify-start gap-2'>
                     <SquareCheckBig/>
                     Cadastrar o nome da lista aqui
