@@ -4,7 +4,7 @@ import GridLayout from 'react-grid-layout';
 import { Habit, Todo, Widget } from '@/utils/habitData'
 import { checkHabit, createHabit, fetchHabits } from '@/utils/fakeApi'
 
-import { HabitWidget } from "@/components/HabitWidget"
+import { HabitWidget } from "@/components/widgets/habit/HabitWidget"
 import { FloatingMenu } from "@/components/floatingMenu/FloatingMenu"
 import TodoWidget from '@/components/widgets/todo/TodoWidget'
 
