@@ -14,9 +14,9 @@ interface HabitWidgetProps {
 }
 
 export function HabitWidget({ habit, onUpdateHabitProgress }: HabitWidgetProps) {
-  const today = new Date().toLocaleDateString()
+  const today = format(new Date(), "MM/dd/yyyy")
   const todayProgress = habit.completedDates[today] || 0
-  console.log(habit)
+
   const getColorClass = (date: Date) => {
     const dateKey = format(date, "MM/dd/yyyy")
     const count = habit.completedDates[dateKey] || 0
@@ -36,7 +36,7 @@ export function HabitWidget({ habit, onUpdateHabitProgress }: HabitWidgetProps) 
   }
 
   const isToday = (date: Date) => {
-    return format(date, "yyyy-MM-dd") === format(today, "yyyy-MM-dd")
+    return format(date, "MM/dd/yyyy") === today
   }
 
   const progressPercentage = (todayProgress / habit.goal) * 100

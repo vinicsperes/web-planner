@@ -1,3 +1,4 @@
+import { formatDate } from "date-fns";
 import { Habit } from "./habitData";
 
 type Result<T, E> =
@@ -67,7 +68,7 @@ export function checkHabit(habitId: string): Result<Habit, string> {
     const checkedHabit = habits.find(habit => habit._id === habitId)
     if (!checkedHabit) return { success: false, error: `Habit with id ${habitId} not found` }
 
-    const today = new Date().toLocaleDateString()
+    const today = formatDate(new Date(), "MM/dd/yyyy")
     const completedMap = checkedHabit.completedDates
     const completedDateCount = completedMap[today]
 
