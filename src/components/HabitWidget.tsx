@@ -8,15 +8,15 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { colorVariants, Habit, habitIcons } from "@/utils/habitData"
 import { CheckIcon, PlusIcon } from "lucide-react"
 
-interface HabitCalendarProps {
+interface HabitWidgetProps {
   habit: Habit
   onUpdateHabitProgress: (habitId: string) => void
 }
 
-export function HabitCalendar({ habit, onUpdateHabitProgress }: HabitCalendarProps) {
+export function HabitWidget({ habit, onUpdateHabitProgress }: HabitWidgetProps) {
   const today = new Date().toLocaleDateString()
   const todayProgress = habit.completedDates[today] || 0
-
+  console.log(habit)
   const getColorClass = (date: Date) => {
     const dateKey = format(date, "MM/dd/yyyy")
     const count = habit.completedDates[dateKey] || 0
@@ -44,7 +44,7 @@ export function HabitCalendar({ habit, onUpdateHabitProgress }: HabitCalendarPro
   const IconComponent = habitIcons.find(icon => icon.name === habit.icon)?.component as React.ElementType
 
   return (
-    <Card className="border bg-card dark:bg-card-dark rounded-xl">
+    <Card key={habit._id} className="card-content border bg-card dark:bg-card-dark rounded-xl grid-item">
       <CardHeader className="p-3 pb-0">
         <CardTitle className="text-card-foreground flex justify-between space-x-2">
           <div className="flex gap-2 align-middle leading-normal">

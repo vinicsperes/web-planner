@@ -20,7 +20,7 @@ export default function TodoWidget() {
     };
 
     return (
-        <Card className="ml-4 w-[27rem] max-w-md border bg-card dark:bg-card-dark rounded-xl">
+        <Card className="card-content ml-4 w-[27rem] max-w-md border bg-card dark:bg-card-dark rounded-xl">
             <CardHeader className='p-3 pb-0'>
                 <CardTitle className='flex items-center justify-start gap-2'>
                     <SquareCheckBig />

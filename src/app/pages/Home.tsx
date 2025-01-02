@@ -1,16 +1,16 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
-import { createSwapy, SlotItemMapArray, Swapy, utils } from "swapy"
+import { useEffect, useState } from 'react'
+import GridLayout from 'react-grid-layout';
 
 import { Habit, Todo, Widget } from '@/utils/habitData'
 import { checkHabit, createHabit, fetchHabits } from '@/utils/fakeApi'
 
-import { DraggableWidget } from "@/components/widgets/DraggableWidget"
-import { HabitCalendar } from "@/components/HabitCalendar"
+import { HabitWidget } from "@/components/HabitWidget"
 import { FloatingMenu } from "@/components/floatingMenu/FloatingMenu"
-
-import '@/swapyStyles.css'
-import '../../globals.css'
 import TodoWidget from '@/components/widgets/todo/TodoWidget'
+
+import '../../globals.css'
+import 'react-grid-layout/css/styles.css';
+import 'react-resizable/css/styles.css';
 
 export default function Home() {
     const [habits, setHabits] = useState<Habit[]>([])
@@ -24,34 +24,7 @@ export default function Home() {
             type: 'habit'
         } as Widget)), ...todos]
 
-    const [slotItemMap, setSlotItemMap] = useState<SlotItemMapArray>(utils.initSlotItemMap(widgets, '_id'))
-    const slottedItems = useMemo(() => utils.toSlottedItems(widgets, '_id', slotItemMap), [widgets, slotItemMap])
-    const swapyRef = useRef<Swapy | null>(null)
     const [isDragEnabled, setIsDragEnabled] = useState<boolean>(false)
-
-    const containerRef = useRef<HTMLDivElement>(null)
-    useEffect(() => utils.dynamicSwapy(swapyRef.current, widgets, '_id', slotItemMap, setSlotItemMap), [widgets])
-
-    useEffect(() => {
-        swapyRef.current = createSwapy(containerRef.current!, {
-            manualSwap: true,
-            enabled: isDragEnabled
-            // animation: 'dynamic',
-            // autoScrollOnDrag: true,
-            // swapMode: "hover"
-            // enabled: true,
-            // dragAxis: 'x',
-            // dragOnHold: true
-        })
-
-        swapyRef.current.onSwap((event) => {
-            setSlotItemMap(event.newSlotItemMap.asArray)
-        })
-
-        return () => {
-            swapyRef.current?.destroy()
-        }
-    }, [isDragEnabled])
 
     const handleAddHabit = (newHabit: Habit) => {
         const result = createHabit(newHabit)
@@ -77,6 +50,13 @@ export default function Home() {
         else console.log(habitsResult.error)
     }, [])
 
+    const initialLayout = widgets.map((item, index) => ({
+        i: item._id,
+        x: (index % 4) * 3, // Ajusta as colunas
+        y: Math.floor(index / 4), // Ajusta as linhas
+        w: 2, // Largura em colunas
+        h: 2, // Altura em linhas, baseada no rowHeight
+    }));
 
     return (
         <div className='flex flex-col h-screen px-48'>
@@ -84,30 +64,27 @@ export default function Home() {
             <div className="flex justify-between items-center p-4 border">
                 <h1 className="text-3xl font-bold mb-6">web-planner</h1>
             </div>
-            <div className="border-x h-full p-4" ref={containerRef}>
-                <div className="items">
-                    {slottedItems.map(({ slotId, itemId, item }) => (
-                        <div className="slot" key={slotId} data-swapy-slot={slotId}>
-                            {item && (
-                                <DraggableWidget
-                                    itemId={itemId}
-                                    isDragEnabled={isDragEnabled}
-                                >
-                                    {/* <HabitWidget key={item._id} habit={item} onUpdateHabitProgress={handleUpdateProgress} /> */}
-                                    {item.type === 'habit' ? (
-                                        <HabitCalendar key={item._id} habit={item as Habit} onUpdateHabitProgress={handleUpdateProgress} />
-                                    ) : item.type === 'todo' ? (
-                                        <TodoWidget />
-                                    )
-                                        : null}
-                                </DraggableWidget>
-                            )}
+            <div className="border-x h-full p-4">
+                <GridLayout
+                    className="layout"
+                    layout={initialLayout}
+                    cols={12}
+                    rowHeight={150}
+                    width={1336}
+                    isResizable={isDragEnabled}
+                    isDraggable={isDragEnabled}
+                    autoSize
+                >
+                    {widgets.map((item) => (
+                        <div key={item._id}>
+                            {item.type === 'habit' ? (
+                                <HabitWidget habit={item as Habit} onUpdateHabitProgress={handleUpdateProgress} />
+                            ) : item.type === 'todo' ? (
+                                <TodoWidget />
+                            ) : null}
                         </div>
                     ))}
-                </div>
-            </div>
-            <div>
-                <TodoWidget />
+                </GridLayout>
             </div>
         </div >
     )
