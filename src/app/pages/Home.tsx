@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import GridLayout from 'react-grid-layout';
+import { Responsive, WidthProvider } from 'react-grid-layout';
 
 import { Habit, Todo, Widget } from '@/utils/habitData'
 import { checkHabit, createHabit, fetchHabits } from '@/utils/fakeApi'
@@ -11,6 +11,8 @@ import TodoWidget from '@/components/widgets/todo/TodoWidget'
 import '../../globals.css'
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
+
+const ResponsiveGridLayout = WidthProvider(Responsive)
 
 export default function Home() {
     const [habits, setHabits] = useState<Habit[]>([])
@@ -50,13 +52,46 @@ export default function Home() {
         else console.log(habitsResult.error)
     }, [])
 
-    const initialLayout = widgets.map((item, index) => ({
-        i: item._id,
-        x: (index % 4) * 3, // Ajusta as colunas
-        y: Math.floor(index / 4), // Ajusta as linhas
-        w: 2, // Largura em colunas
-        h: 2, // Altura em linhas, baseada no rowHeight
-    }));
+    const layouts = {
+        lg: widgets.map((item, index) => ({
+            i: item._id,
+            x: (index % 6) * 2,
+            y: Math.floor(index / 6),
+            w: 2,
+            h: 2,
+        })),
+        md: widgets.map((item, index) => ({
+            i: item._id,
+            x: (index % 5) * 2,
+            y: Math.floor(index / 5),
+            w: 2,
+            h: 2,
+        })),
+        sm: widgets.map((item, index) => ({
+            i: item._id,
+            x: (index % 3) * 4,
+            y: Math.floor(index / 3),
+            w: 2,
+            h: 2,
+        })),
+        xs: widgets.map((item, index) => ({
+            i: item._id,
+            x: 0,
+            y: index,
+            w: 2,
+            h: 2,
+        })),
+        xxs: widgets.map((item, index) => ({
+            i: item._id,
+            x: 0,
+            y: index,
+            w: 2,
+            h: 2,
+        })),
+    }
+    
+    const breakpoints = { lg: 1280, md: 992, sm: 768, xs: 480, xxs: 0 }
+    const cols = { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }
 
     return (
         <div className='flex flex-col h-screen px-48'>
@@ -65,12 +100,12 @@ export default function Home() {
                 <h1 className="text-3xl font-bold mb-6">web-planner</h1>
             </div>
             <div className="border-x h-full p-4">
-                <GridLayout
+                <ResponsiveGridLayout
                     className="layout"
-                    layout={initialLayout}
-                    cols={12}
+                    layouts={layouts}
+                    breakpoints={breakpoints}
+                    cols={cols}
                     rowHeight={150}
-                    width={1336}
                     isResizable={isDragEnabled}
                     isDraggable={isDragEnabled}
                     autoSize
@@ -84,7 +119,7 @@ export default function Home() {
                             ) : null}
                         </div>
                     ))}
-                </GridLayout>
+                </ResponsiveGridLayout>
             </div>
         </div >
     )

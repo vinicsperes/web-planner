@@ -44,7 +44,7 @@ export function HabitWidget({ habit, onUpdateHabitProgress }: HabitWidgetProps) 
   const IconComponent = habitIcons.find(icon => icon.name === habit.icon)?.component as React.ElementType
 
   return (
-    <Card key={habit._id} className="card-content border bg-card dark:bg-card-dark rounded-xl grid-item">
+    <Card key={habit._id} className="min-w-52 max-w-52 card-content border bg-card dark:bg-card-dark rounded-xl grid-item">
       <CardHeader className="p-3 pb-0">
         <CardTitle className="text-card-foreground flex justify-between space-x-2">
           <div className="flex gap-2 align-middle leading-normal">
