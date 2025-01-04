@@ -52,6 +52,17 @@ export default function Home() {
         else console.log(habitsResult.error)
     }, [])
 
+    useEffect(() => {
+        if (isDragEnabled) {
+            document.body.style.userSelect = 'none';
+        } else {
+            document.body.style.userSelect = '';
+        }
+        return () => {
+            document.body.style.userSelect = '';
+        }
+    }, [isDragEnabled])
+
     const layouts = {
         lg: widgets.map((item, index) => ({
             i: item._id,
@@ -89,7 +100,7 @@ export default function Home() {
             h: 2,
         })),
     }
-    
+
     const breakpoints = { lg: 1280, md: 992, sm: 768, xs: 480, xxs: 0 }
     const cols = { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }
 
