@@ -11,6 +11,7 @@ import TodoWidget from '@/components/widgets/todo/TodoWidget'
 import '../../globals.css'
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
+import { DraggableWidget } from '@/components/widgets/DraggableWidget';
 
 const ResponsiveGridLayout = WidthProvider(Responsive)
 
@@ -19,6 +20,7 @@ export default function Home() {
     const [todos] = useState<Todo[]>([
         { _id: '10', title: 'teste', type: 'todo' }
     ])
+    const [isDragEnabled, setIsDragEnabled] = useState<boolean>(false)
 
     const widgets: Widget[] = [
         ...habits.map((habit) => ({
@@ -26,7 +28,6 @@ export default function Home() {
             type: 'habit'
         } as Widget)), ...todos]
 
-    const [isDragEnabled, setIsDragEnabled] = useState<boolean>(false)
 
     const handleAddHabit = (newHabit: Habit) => {
         const result = createHabit(newHabit)
@@ -117,16 +118,20 @@ export default function Home() {
                     breakpoints={breakpoints}
                     cols={cols}
                     rowHeight={150}
-                    isResizable={isDragEnabled}
+                    isResizable={false}
                     isDraggable={isDragEnabled}
                     autoSize
                 >
                     {widgets.map((item) => (
                         <div key={item._id}>
                             {item.type === 'habit' ? (
-                                <HabitWidget habit={item as Habit} onUpdateHabitProgress={handleUpdateProgress} />
+                                <DraggableWidget itemId={item._id} isDragEnabled={isDragEnabled}>
+                                    <HabitWidget habit={item as Habit} onUpdateHabitProgress={handleUpdateProgress} />
+                                </DraggableWidget>
                             ) : item.type === 'todo' ? (
-                                <TodoWidget />
+                                <DraggableWidget itemId={item._id} isDragEnabled={isDragEnabled}>
+                                    <TodoWidget />
+                                </DraggableWidget>
                             ) : null}
                         </div>
                     ))}
