@@ -11,7 +11,7 @@ import TodoWidget from '@/components/widgets/todo/TodoWidget'
 import '../../globals.css'
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
-import { DraggableWidget } from '@/components/widgets/DraggableWidget';
+import { DraggableWidget } from '@/components/widgets/components/draggableWidget/DraggableWidget';
 
 const ResponsiveGridLayout = WidthProvider(Responsive)
 
