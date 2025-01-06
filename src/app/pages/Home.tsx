@@ -18,16 +18,22 @@ const ResponsiveGridLayout = WidthProvider(Responsive)
 export default function Home() {
     const [habits, setHabits] = useState<Habit[]>([])
     const [todos] = useState<Todo[]>([
-        { _id: '10', title: 'teste', type: 'todo' }
+        { _id: '10', title: 'teste', type: 'todo', width: 4, height: 1 }
     ])
     const [isDragEnabled, setIsDragEnabled] = useState<boolean>(false)
 
     const widgets: Widget[] = [
         ...habits.map((habit) => ({
             ...habit,
-            type: 'habit'
-        } as Widget)), ...todos]
-
+            type: 'habit',
+            width: 2, // Altura e largura para os que não foram cadastrados
+            height: 2,
+        } as Widget)), 
+        ...todos.map((todo) => ({
+            ...todo,
+            type: 'todo',
+        } as Widget))
+    ];
 
     const handleAddHabit = (newHabit: Habit) => {
         const result = createHabit(newHabit)
@@ -69,36 +75,36 @@ export default function Home() {
             i: item._id,
             x: (index % 6) * 2,
             y: Math.floor(index / 6),
-            w: 2,
-            h: 2,
+            w: item.width,
+            h: item.height,
         })),
         md: widgets.map((item, index) => ({
             i: item._id,
             x: (index % 5) * 2,
             y: Math.floor(index / 5),
-            w: 2,
-            h: 2,
+            w: item.width,
+            h: item.height,
         })),
         sm: widgets.map((item, index) => ({
             i: item._id,
             x: (index % 3) * 4,
             y: Math.floor(index / 3),
-            w: 2,
-            h: 2,
+            w: item.width,
+            h: item.height,
         })),
         xs: widgets.map((item, index) => ({
             i: item._id,
             x: 0,
             y: index,
-            w: 2,
-            h: 2,
+            w: item.width,
+            h: item.height,
         })),
         xxs: widgets.map((item, index) => ({
             i: item._id,
             x: 0,
             y: index,
-            w: 2,
-            h: 2,
+            w: item.width,
+            h: item.height,
         })),
     }
 

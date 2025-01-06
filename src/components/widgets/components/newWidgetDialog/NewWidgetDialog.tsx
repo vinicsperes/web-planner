@@ -39,7 +39,9 @@ export default function NewWidgetDialog({ onAddHabit }: NewWidgetDialogProps) {
       color: data.color,
       goal: data.goal,
       completedDates: {},
-      type: 'habit'
+      type: 'habit',
+      width: 2,
+      height: 2
     }
 
     onAddHabit(newHabit)

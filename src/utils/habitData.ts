@@ -3,6 +3,8 @@ import { Activity, Book, Coffee, Dumbbell, Music, Heart, Sun, Moon, Star, Cloud,
 export interface Widget {
     _id: string
     type: 'habit' | 'todo'
+    width: number
+    height: number
 }
 
 export interface Habit extends Widget {
