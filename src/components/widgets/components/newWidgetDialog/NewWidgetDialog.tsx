@@ -2,33 +2,48 @@ import { useState } from 'react'
 
 import { FileText, Heading, Image, ListTodo, Music, Plus } from 'lucide-react'
 import { useForm } from 'react-hook-form'
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid'
 
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Label } from "@/components/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-
-import { Habit, HabitFormData, colorVariants, habitColors as colors, habitIcons as icons } from '@/utils/habitData';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../../../ui/dropdown-menu';
+import {
+  Habit,
+  HabitFormData,
+  colorVariants,
+  habitColors as colors,
+  habitIcons as icons,
+} from '@/utils/habitData'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '../../../ui/dropdown-menu'
 
 type NewWidgetDialogProps = {
-  onAddHabit: (habit: Habit) => void;
-};
+  onAddHabit: (habit: Habit) => void
+}
 
 export default function NewWidgetDialog({ onAddHabit }: NewWidgetDialogProps) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
 
-  const { register, handleSubmit, setValue, watch, formState: { isValid } } = useForm<HabitFormData>({
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { isValid },
+  } = useForm<HabitFormData>({
     defaultValues: {
       goal: 1,
       icon: icons[0].name || "",
       color: colors[0] || "",
     },
-  });
+  })
 
   const onSubmit = (data: HabitFormData) => {
     const newHabit: Habit = {
@@ -41,7 +56,7 @@ export default function NewWidgetDialog({ onAddHabit }: NewWidgetDialogProps) {
       completedDates: {},
       type: 'habit',
       width: 2,
-      height: 2
+      height: 2,
     }
 
     onAddHabit(newHabit)
@@ -51,7 +66,7 @@ export default function NewWidgetDialog({ onAddHabit }: NewWidgetDialogProps) {
   const goal = watch('goal')
 
   const closeDialog = () => {
-    setOpen(false);
+    setOpen(false)
   }
 
   return (
@@ -63,8 +78,8 @@ export default function NewWidgetDialog({ onAddHabit }: NewWidgetDialogProps) {
             <span className="sr-only">Add item</span>
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" side="top" className="">
-          <DialogTrigger className='w-full' >
+        <DropdownMenuContent align="end" side="top">
+          <DialogTrigger className="w-full">
             <DropdownMenuItem>
               <ListTodo className="mr-2 h-4 w-4" />
               <span>Habit</span>
@@ -88,17 +103,16 @@ export default function NewWidgetDialog({ onAddHabit }: NewWidgetDialogProps) {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-      <DialogContent className="sm:max-w-[400px] sm:max-h-[900px]">
+      <DialogContent className="sm:max-w-[400px] sm:max-h-[900px] bg-background text-foreground">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <p>Create a new Habit!</p>
           </DialogTitle>
         </DialogHeader>
 
-        <ScrollArea className="h-[500px] pr-2">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 m-2">
             <div className="space-y-2">
-              <Label htmlFor="name" className='text-zinc-300'>Name</Label>
+              <Label htmlFor="name">Name</Label>
               <Input
                 id="name"
                 {...register("name", { required: "Name is required" })}
@@ -107,7 +121,7 @@ export default function NewWidgetDialog({ onAddHabit }: NewWidgetDialogProps) {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="description" className='text-zinc-300'>Description</Label>
+              <Label htmlFor="description">Description</Label>
               <Textarea
                 id="description"
                 {...register("description", { required: "Description is required" })}
@@ -116,12 +130,12 @@ export default function NewWidgetDialog({ onAddHabit }: NewWidgetDialogProps) {
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="goal" className='text-zinc-300'>Daily Goal</label>
+              <label htmlFor="goal">Daily Goal</label>
               <div className="flex items-center space-x-2">
-                <span className="w-full border rounded text-zinc-300 p-1 pl-2">{goal} / Day</span>
+                <span className="w-full border rounded p-1 pl-2">{goal} / Day</span>
                 <button
                   type="button"
-                  className="px-3 py-1 border rounded disabled:opacity-50 text-zinc-300"
+                  className="px-3 py-1 border rounded disabled:opacity-50"
                   onClick={() => setValue('goal', goal - 1)}
                   disabled={goal <= 1}
                 >
@@ -129,7 +143,7 @@ export default function NewWidgetDialog({ onAddHabit }: NewWidgetDialogProps) {
                 </button>
                 <button
                   type="button"
-                  className="px-3 py-1 border rounded disabled:opacity-50 text-zinc-300"
+                  className="px-3 py-1 border rounded disabled:opacity-50"
                   onClick={() => setValue('goal', goal + 1)}
                   disabled={goal >= 36}
                 >
@@ -139,7 +153,7 @@ export default function NewWidgetDialog({ onAddHabit }: NewWidgetDialogProps) {
             </div>
 
             <div className="space-y-2">
-              <Label className='text-zinc-300'>Select an icon</Label>
+              <Label>Select an icon</Label>
               <RadioGroup
                 className="grid grid-cols-7 gap-2"
                 onValueChange={(value) => setValue('icon', value)}
@@ -153,7 +167,7 @@ export default function NewWidgetDialog({ onAddHabit }: NewWidgetDialogProps) {
                     />
                     <Label
                       htmlFor={`icon-${icon.name}`}
-                      className="flex items-center justify-center text-zinc-300 rounded-md border-2 border-zinc-900 bg-popover hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary cursor-pointer"
+                      className="flex items-center justify-center text-foreground rounded-md border-2 border-muted bg-popover hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary cursor-pointer"
                       style={{ width: "40px", height: "40px" }}
                     >
                       <icon.component className="h-5 w-5" />
@@ -164,7 +178,7 @@ export default function NewWidgetDialog({ onAddHabit }: NewWidgetDialogProps) {
             </div>
 
             <div className="space-y-2">
-              <Label className='text-zinc-300'>Select a color</Label>
+              <Label>Select a color</Label>
               <RadioGroup
                 className="grid grid-cols-7 gap-2"
                 onValueChange={(value) => setValue('color', value)}
@@ -178,13 +192,10 @@ export default function NewWidgetDialog({ onAddHabit }: NewWidgetDialogProps) {
                     />
                     <Label
                       htmlFor={`color-${color}`}
-                      className="flex items-center justify-center rounded-md border-2 border-black bg-popover hover:border-primary peer-data-[state=checked]:border-primary cursor-pointer"
+                      className="flex items-center justify-center rounded-md border-2 border-muted bg-popover hover:border-primary peer-data-[state=checked]:border-primary cursor-pointer"
                       style={{ width: "40px", height: "40px" }}
                     >
-                      <div
-                        className={`h-6 w-6 ${colorVariants[color]?.[400].bg} rounded-md m-1`}
-
-                      />
+                      <div className={`h-6 w-6 ${colorVariants[color]?.[400].bg} rounded-md m-1`} />
                     </Label>
                   </div>
                 ))}
@@ -193,14 +204,13 @@ export default function NewWidgetDialog({ onAddHabit }: NewWidgetDialogProps) {
 
             <Button
               type="submit"
-              className={`w-full ${isValid ? 'bg-green-600 hover:bg-green-500' : 'bg-gray-400 cursor-not-allowed'}`}
+              className={`w-full ${isValid ? 'bg-green-600 hover:bg-green-500' : 'cursor-not-allowed'}`}
               disabled={!isValid}
             >
               Save Habit
             </Button>
           </form>
-        </ScrollArea>
       </DialogContent>
     </Dialog>
-  );
+  )
 }
