@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Task } from "./hooks/useTodoList";
-import { motion, AnimatePresence } from 'framer-motion';
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Check, ChevronDown, ChevronUp, CornerDownRight, Plus, Trash2 } from "lucide-react";
@@ -29,14 +28,7 @@ export default function TodoItem({ task, toggleTask, addTask, moveTask, removeTa
     };
 
     return (
-        <motion.div
-            layout
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className={`space-y-1 ${level > 0 ? 'ml-6' : ''}`}
-        >
+        <div className={`space-y-1 ${level > 0 ? 'ml-6' : ''}`}>
             <div className="flex items-center space-x-2">
                 <Checkbox
                     checked={task.completed}
@@ -84,48 +76,40 @@ export default function TodoItem({ task, toggleTask, addTask, moveTask, removeTa
                     </Button>
                 </div>
             </div>
-            <AnimatePresence>
-                {task.subTasks.map((subTask) => (
-                    <TodoItem
-                        key={subTask.id}
-                        task={subTask}
-                        toggleTask={toggleTask}
-                        addTask={addTask}
-                        moveTask={moveTask}
-                        removeTask={removeTask}
-                        level={level + 1}
-                        parentId={task.id}
+            {task.subTasks.map((subTask) => (
+                <TodoItem
+                    key={subTask.id}
+                    task={subTask}
+                    toggleTask={toggleTask}
+                    addTask={addTask}
+                    moveTask={moveTask}
+                    removeTask={removeTask}
+                    level={level + 1}
+                    parentId={task.id}
+                />
+            ))}
+            {isAddingSubTodo && (
+                <div className={`flex items-center ${level > 0 ? 'ml-6' : ''}`}>
+                    <CornerDownRight />
+                    <input
+                        value={newSubTodo}
+                        onChange={(e) => setNewSubTodo(e.target.value)}
+                        placeholder="Add subtask..."
+                        onKeyPress={(e) => {
+                            if (e.key === 'Enter' && newSubTodo.trim()) handleAddSubTodo();
+                        }}
+                        className="ml-6 border-b border-muted-foreground bg-transparent focus:outline-none text-sm flex-grow"
                     />
-                ))}
-                {isAddingSubTodo && (
-                    <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className={`flex items-center ${level > 0 ? 'ml-6' : ''}`}
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-6 w-6"
+                        onClick={handleAddSubTodo}
                     >
-                        <CornerDownRight />
-                        <input
-                            value={newSubTodo}
-                            onChange={(e) => setNewSubTodo(e.target.value)}
-                            placeholder="Add subtask..."
-                            onKeyPress={(e) => {
-                                if (e.key === 'Enter' && newSubTodo.trim()) handleAddSubTodo();
-                            }}
-                            className="ml-6 border-b border-muted-foreground bg-transparent focus:outline-none text-sm flex-grow"
-                        />
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            className="h-6 w-6"
-                            onClick={handleAddSubTodo}
-                        >
-                            <Check className="h-4 w-4" />
-                        </Button>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </motion.div>
+                        <Check className="h-4 w-4" />
+                    </Button>
+                </div>
+            )}
+        </div>
     );
 };
