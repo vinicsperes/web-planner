@@ -58,39 +58,6 @@ export function useTodoList(initialTodos: Task[] = []) {
         })
     }
     
-    function moveTask(id: string, direction: 'up' | 'down', parentId?: string) {
-        setTodos((prevTasks) => {
-            const moveTaskRecursive = (tasks: Task[]): Task[] => {
-                const index = tasks.findIndex(task => task.id === id)
-                if (index === -1) {
-                    return tasks.map(task => ({
-                        ...task,
-                        subTasks: moveTaskRecursive(task.subTasks)
-                    }))
-                }
-
-                const newIndex = direction === 'up' ? Math.max(0, index - 1) : Math.min(tasks.length - 1, index + 1)
-                if (newIndex === index) return tasks
-
-                const newTodos = [...tasks]
-                const [removed] = newTodos.splice(index, 1)
-                newTodos.splice(newIndex, 0, removed)
-                return newTodos
-            }
-
-            if (!parentId) {
-                return moveTaskRecursive(prevTasks)
-            }
-
-            return prevTasks.map(task => {
-                if (task.id === parentId) {
-                    return { ...task, subTasks: moveTaskRecursive(task.subTasks) }
-                }
-                return task
-            })
-        })
-    }
-
     function removeTask(id: string, parentId?: string) {
         setTodos((prevTasks: Task[]) => {
             const removeTaskRecursive = (tasks: Task[]): Task[] => {
@@ -113,5 +80,5 @@ export function useTodoList(initialTodos: Task[] = []) {
         })
     }
 
-    return { tasks, addTask, toggleTask, moveTask, removeTask }
+    return { tasks, addTask, toggleTask, removeTask }
 }

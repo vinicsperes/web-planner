@@ -10,7 +10,7 @@ import { useTodoList } from './hooks/useTodoList';
 import TodoItem from './TodoItem';
 
 export default function TodoWidget() {
-    const { tasks, addTask, toggleTask, moveTask, removeTask } = useTodoList();
+    const { tasks, addTask, toggleTask, removeTask } = useTodoList();
     const [newTodo, setNewTodo] = useState('');
 
     const handleAddTodo = () => {
@@ -38,7 +38,6 @@ export default function TodoWidget() {
                                 task={task}
                                 toggleTask={toggleTask}
                                 addTask={addTask}
-                                moveTask={moveTask}
                                 removeTask={removeTask}
                                 level={0}
                             />

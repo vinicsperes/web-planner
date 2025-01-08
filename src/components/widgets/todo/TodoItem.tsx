@@ -2,20 +2,19 @@ import { useState } from "react";
 import { Task } from "./hooks/useTodoList";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
-import { Check, ChevronDown, ChevronUp, CornerDownRight, Plus, Trash2 } from "lucide-react";
+import { Check, CornerDownRight, Plus, Trash2 } from "lucide-react";
 
 
 interface TodoItemProps {
     task: Task;
     toggleTask: (id: string) => void;
     addTask: (content: string, parentId?: string) => void;
-    moveTask: (id: string, direction: 'up' | 'down', parentId?: string) => void;
     removeTask: (id: string, parentId?: string) => void;
     level: number;
     parentId?: string;
 }
 
-export default function TodoItem({ task, toggleTask, addTask, moveTask, removeTask, level, parentId }: TodoItemProps) {
+export default function TodoItem({ task, toggleTask, addTask, removeTask, level, parentId }: TodoItemProps) {
     const [newSubTodo, setNewSubTodo] = useState('');
     const [isAddingSubTodo, setIsAddingSubTodo] = useState(false);
 
@@ -39,23 +38,6 @@ export default function TodoItem({ task, toggleTask, addTask, moveTask, removeTa
                     {task.content}
                 </span>
                 <div className="flex space-x-1">
-                    <Button
-                        variant="outline"
-                        size="icon"
-                        className="w-6 h-6 rounded-sm"
-                        onClick={() => moveTask(task.id, 'up', parentId)}
-                    >
-                        <ChevronUp className="h-3 w-3" />
-                    </Button>
-                    <Button
-                        variant="outline"
-                        size="icon"
-                        className="w-6 h-6 rounded-sm"
-                        onClick={() => moveTask(task.id, 'down', parentId)}
-                    >
-                        <ChevronDown className="h-3 w-3" />
-                    </Button>
-
                     {level === 0 && (
                         <Button
                             variant={'outline'}
@@ -82,7 +64,6 @@ export default function TodoItem({ task, toggleTask, addTask, moveTask, removeTa
                     task={subTask}
                     toggleTask={toggleTask}
                     addTask={addTask}
-                    moveTask={moveTask}
                     removeTask={removeTask}
                     level={level + 1}
                     parentId={task.id}
