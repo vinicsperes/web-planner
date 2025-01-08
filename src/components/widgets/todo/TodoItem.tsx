@@ -2,8 +2,13 @@ import { useState } from "react";
 import { Task } from "./hooks/useTodoList";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
-import { Check, CornerDownRight, Plus, Trash2 } from "lucide-react";
-
+import { Check, CornerDownRight, Plus, Trash2, MoreHorizontal } from "lucide-react";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface TodoItemProps {
     task: Task;
@@ -38,24 +43,44 @@ export default function TodoItem({ task, toggleTask, addTask, removeTask, level,
                     {task.content}
                 </span>
                 <div className="flex space-x-1">
-                    {level === 0 && (
+                    {level === 0 ? (
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Button
+                                    variant="outline"
+                                    size="icon"
+                                    className="h-6 w-6"
+                                >
+                                    <MoreHorizontal className="h-4 w-4" />
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end">
+                                <DropdownMenuItem
+                                    onClick={() => setIsAddingSubTodo((prev) => !prev)}
+                                    className="flex items-center space-x-2"
+                                >
+                                    <Plus className="h-4 w-4" />
+                                    <span>Add Task</span>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem
+                                    onClick={() => removeTask(task.id, parentId)}
+                                    className="flex items-center space-x-2"
+                                >
+                                    <Trash2 className="h-4 w-4" />
+                                    <span>Remove Task</span>
+                                </DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    ) : (
                         <Button
-                            variant={'outline'}
+                            variant="destructive"
                             size="icon"
-                            className="h-6 w-6"
-                            onClick={() => setIsAddingSubTodo((prev) => !prev)}
+                            className="w-6 h-6 rounded-sm"
+                            onClick={() => removeTask(task.id, parentId)}
                         >
-                            <Plus className="h-4 w-4" />
+                            <Trash2 />
                         </Button>
                     )}
-                    <Button
-                        variant="destructive"
-                        size="icon"
-                        className="w-6 h-6 rounded-sm"
-                        onClick={() => removeTask(task.id, parentId)}
-                    >
-                        <Trash2 />
-                    </Button>
                 </div>
             </div>
             {task.subTasks.map((subTask) => (
@@ -93,4 +118,4 @@ export default function TodoItem({ task, toggleTask, addTask, removeTask, level,
             )}
         </div>
     );
-};
+}
