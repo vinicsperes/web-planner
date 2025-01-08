@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@/app/components/ui/button';
 import { Plus, SquareCheckBig } from 'lucide-react';
-import { Separator } from '@/components/ui/separator';
-import { ScrollArea } from '@/components/ui/scroll-area'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Separator } from '@/app/components/ui/separator';
+import { ScrollArea } from '@/app/components/ui/scroll-area'
+import { Card, CardContent, CardHeader, CardTitle } from '@/app/components/ui/card';
 
 import { useTodoList } from './hooks/useTodoList';
 import TodoItem from './TodoItem';
@@ -21,7 +21,7 @@ export default function TodoWidget() {
     };
 
     return (
-        <Card className="card-content border bg-card dark:bg-card-dark rounded-xl">
+        <Card className="border bg-card dark:bg-card-dark rounded-xl">
             <CardHeader className='p-3 pb-0'>
                 <CardTitle className='flex items-center justify-start gap-2'>
                     <SquareCheckBig />

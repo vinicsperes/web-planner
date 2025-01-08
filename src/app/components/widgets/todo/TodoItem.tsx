@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Task } from "./hooks/useTodoList";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/app/components/ui/checkbox";
+import { Button } from "@/app/components/ui/button";
 import { Check, CornerDownRight, Plus, Trash2, MoreHorizontal } from "lucide-react";
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/app/components/ui/dropdown-menu";
 
 interface TodoItemProps {
     task: Task;

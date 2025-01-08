@@ -1,9 +1,5 @@
-import '@/globals.css'
-
-export const metadata = {
-    title: 'Habit Tracker',
-    description: 'Track your daily habits and progress',
-}
+import { Header } from "@/app/components/header/Header"
+import "./globals.css"
 
 export default function RootLayout({
     children,
@@ -11,10 +7,16 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <div className={'font-sans bg-background'}>
-            {children}
-        </div>
+        <html lang="en" suppressHydrationWarning>
+            <body className="min-h-screen bg-background font-sans antialiased">
+                <div className="relative flex min-h-screen flex-col">
+                    <Header />
+                    {/* <Sidebar /> */}
+                    <main className="flex w-full flex-col overflow-hidden">
+                        {children}
+                    </main>
+                </div>
+            </body>
+        </html>
     )
 }
-
-

@@ -1,9 +1,9 @@
 import * as React from "react"
 import { format, isSameMonth } from "date-fns"
 
-import { Calendar } from "@/components/ui/calendar"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Calendar } from "@/app/components/ui/calendar"
+import { Button } from "@/app/components/ui/button"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/app/components/ui/card"
 
 import { colorVariants, Habit, habitIcons } from "@/utils/habitData"
 import { CheckIcon, PlusIcon } from "lucide-react"

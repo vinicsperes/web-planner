@@ -4,21 +4,21 @@ import { Responsive, WidthProvider } from 'react-grid-layout';
 import { Habit, Todo, Widget } from '@/utils/habitData'
 import { checkHabit, createHabit, fetchHabits } from '@/utils/fakeApi'
 
-import TodoWidget from '@/components/widgets/todo/TodoWidget'
-import { HabitWidget } from "@/components/widgets/habit/HabitWidget"
-import { FloatingMenu } from "@/components/floatingMenu/FloatingMenu"
-import { DraggableWidget } from '@/components/widgets/components/draggableWidget/DraggableWidget';
+import TodoWidget from '@/app/components/widgets/todo/TodoWidget'
+import { HabitWidget } from "@/app/components/widgets/habit/HabitWidget"
+import { FloatingMenu } from "@/app/components/floatingMenu/FloatingMenu"
+import { DraggableWidget } from '@/app/components/widgets/components/draggableWidget/DraggableWidget';
 
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 
-import '../../globals.css'
+import './globals.css'
 const ResponsiveGridLayout = WidthProvider(Responsive)
 
 export default function Home() {
     const [habits, setHabits] = useState<Habit[]>([])
     const [todos] = useState<Todo[]>([
-        { _id: '10', title: 'teste', type: 'todo', width: 4, height: 1 }
+        { _id: '10', title: 'teste', type: 'todo', width: 4, height: 3 }
     ])
     const [isDragEnabled, setIsDragEnabled] = useState<boolean>(false)
 
@@ -111,9 +111,6 @@ export default function Home() {
     return (
         <div className='flex flex-col h-screen px-48'>
             <FloatingMenu setIsDragEnabled={setIsDragEnabled} isDragEnabled={isDragEnabled} onAddHabit={handleAddHabit} />
-            <div className="flex justify-between items-center p-4 border">
-                <h1 className="text-3xl font-bold mb-6">web-planner</h1>
-            </div>
             <div className="border-x h-full p-4">
                 <ResponsiveGridLayout
                     className="layout"

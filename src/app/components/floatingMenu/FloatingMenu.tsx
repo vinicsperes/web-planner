@@ -1,10 +1,6 @@
-import { Settings } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Habit } from '@/utils/habitData'
-
-import ThemeToggle from './ components/ThemeToggle'
 import RearrangeWidgetsButton from './ components/RearrangeWidgetsButton'
 import NewWidgetDialog from '../widgets/components/newWidgetDialog/NewWidgetDialog'
+import { Habit } from '@/utils/habitData'
 
 type FloatingMenuProps = {
     isDragEnabled: boolean
@@ -15,17 +11,8 @@ type FloatingMenuProps = {
 export function FloatingMenu({ isDragEnabled, setIsDragEnabled, onAddHabit }: FloatingMenuProps) {
     return (
         <div className="fixed bottom-4 left-1/2 -translate-x-1/2 flex items-center space-x-2 bg-background/80 dark:border backdrop-blur-sm rounded-lg p-2 shadow-lg z-50">
-            
             <NewWidgetDialog onAddHabit={onAddHabit} />
-
             <RearrangeWidgetsButton isDragEnabled={isDragEnabled} setIsDragEnabled={setIsDragEnabled} />
-
-            <ThemeToggle />
-
-            <Button variant="ghost" size="icon" className="h-9 w-9">
-                <Settings className="h-4 w-4" />
-                <span className="sr-only">Settings</span>
-            </Button>
         </div>
     )
 }
