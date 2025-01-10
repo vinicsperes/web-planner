@@ -4,12 +4,12 @@ import { FileText, Heading, Image, ListTodo, Music, Plus } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { v4 as uuidv4 } from 'uuid'
 
-import { Button } from "@/app/components/ui/button"
-import { Input } from "@/app/components/ui/input"
-import { Textarea } from "@/app/components/ui/textarea"
-import { Label } from "@/app/components/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/app/components/ui/radio-group"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/app/components/ui/dialog"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Label } from "@/components/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import {
   Habit,
   HabitFormData,

@@ -1,6 +1,6 @@
 import { Check, Hand, Move } from "lucide-react";
 import { Button } from "../../ui/button";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/app/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { toast } from "sonner";
 
 type ButtonProps = {

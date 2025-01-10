@@ -4,15 +4,18 @@ import { Responsive, WidthProvider } from 'react-grid-layout';
 import { Habit, Todo, Widget } from '@/utils/habitData'
 import { checkHabit, createHabit, fetchHabits } from '@/utils/fakeApi'
 
-import TodoWidget from '@/app/components/widgets/todo/TodoWidget'
-import { HabitWidget } from "@/app/components/widgets/habit/HabitWidget"
-import { FloatingMenu } from "@/app/components/floatingMenu/FloatingMenu"
-import { DraggableWidget } from '@/app/components/widgets/components/draggableWidget/DraggableWidget';
+import TodoWidget from '@/components/widgets/todo/TodoWidget'
+import { HabitWidget } from "@/components/widgets/habit/HabitWidget"
+import { FloatingMenu } from "@/components/floatingMenu/FloatingMenu"
+import { DraggableWidget } from '@/components/widgets/components/draggableWidget/DraggableWidget';
 
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 
 import './globals.css'
+import { AppSidebar } from '@/components/ui/app-sidebar';
+import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
+import { Header } from '@/components/header/Header';
 const ResponsiveGridLayout = WidthProvider(Responsive)
 
 export default function Home() {
@@ -28,7 +31,7 @@ export default function Home() {
             type: 'habit',
             width: 2, // Altura e largura para os que não foram cadastrados
             height: 2,
-        } as Widget)), 
+        } as Widget)),
         ...todos.map((todo) => ({
             ...todo,
             type: 'todo',
@@ -109,31 +112,39 @@ export default function Home() {
     }
 
     return (
-        <div className='flex flex-col h-screen px-48'>
-            <FloatingMenu setIsDragEnabled={setIsDragEnabled} isDragEnabled={isDragEnabled} onAddHabit={handleAddHabit} />
-            <div className="border-x h-full p-4">
-                <ResponsiveGridLayout
-                    className="layout"
-                    layouts={layouts}
-                    rowHeight={150}
-                    isResizable={false}
-                    isDraggable={isDragEnabled}
-                >
-                    {widgets.map((item) => (
-                        <div key={item._id}>
-                            {item.type === 'habit' ? (
-                                <DraggableWidget itemId={item._id} isDragEnabled={isDragEnabled}>
-                                    <HabitWidget habit={item as Habit} onUpdateHabitProgress={handleUpdateProgress} />
-                                </DraggableWidget>
-                            ) : item.type === 'todo' ? (
-                                <DraggableWidget itemId={item._id} isDragEnabled={isDragEnabled}>
-                                    <TodoWidget />
-                                </DraggableWidget>
-                            ) : null}
-                        </div>
-                    ))}
-                </ResponsiveGridLayout>
-            </div>
-        </div >
+        <SidebarProvider>
+            <AppSidebar />
+            <SidebarInset>
+                <Header />
+                <div className='flex flex-col h-screen px-48'>
+                    <FloatingMenu setIsDragEnabled={setIsDragEnabled} isDragEnabled={isDragEnabled} onAddHabit={handleAddHabit} />
+                    <div className="border-x h-full p-4">
+                        <ResponsiveGridLayout
+                            className="layout"
+                            layouts={layouts}
+                            rowHeight={150}
+                            isResizable={false}
+                            isDraggable={isDragEnabled}
+                        >
+                            {widgets.map((item) => (
+                                <div key={item._id}>
+                                    {item.type === 'habit' ? (
+                                        <DraggableWidget itemId={item._id} isDragEnabled={isDragEnabled}>
+                                            <HabitWidget habit={item as Habit} onUpdateHabitProgress={handleUpdateProgress} />
+                                        </DraggableWidget>
+                                    ) : item.type === 'todo' ? (
+                                        <DraggableWidget itemId={item._id} isDragEnabled={isDragEnabled}>
+                                            <TodoWidget />
+                                        </DraggableWidget>
+                                    ) : null}
+                                </div>
+                            ))}
+                        </ResponsiveGridLayout>
+                    </div>
+                </div >
+            </SidebarInset>
+        </SidebarProvider>
     )
 }
+
+
