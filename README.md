@@ -1,36 +1,36 @@
 # ✨ Web Planner
 
-**Web Planner** é um sistema web para organização e planejamento pessoal. Ele une diferentes ferramentas em uma única interface, permitindo que os usuários acompanhem suas metas, finanças e hábitos de forma prática e visualmente agradável. O projeto foi construído visando proporcionar uma experiência de usuário intuitiva e eficiente.
+**Web Planner** is a web system for personal organization and planning. It combines different tools into a single interface, allowing users to track their goals, finances, and habits in a practical and visually pleasing way. The project was built to provide an intuitive and efficient user experience.
 
-## Funcionalidades
+## Features
 
-- **Planejamento de Metas**: Crie e gerencie suas metas diárias, semanais e mensais.
-- **Rastreamento de Hábitos**: Acompanhe seus hábitos e visualize seu progresso.
-- **Gestão Financeira**: Controle seu orçamento, gastos e economias.
-- **Interface Intuitiva**: Design minimalista com foco na usabilidade.
+- **Goal Planning**: Create and manage your daily, weekly, and monthly goals.
+- **Habit Tracking**: Monitor your habits and visualize your progress.
+- **Financial Management**: Control your budget, expenses, and savings.
+- **Intuitive Interface**: Minimalist design focused on usability.
 
-## Tecnologias Utilizadas
+## Technologies Used
 
-- **React**: Biblioteca JavaScript para construção da interface.
-- **Tailwind CSS**: Framework CSS para estilização rápida e responsiva.
-- **shadcn**: Conjunto de componentes UI para interfaces modernas e acessíveis.
-- **Vite**: Ferramenta de build para desenvolvimento rápido e otimizado.
+- **React**: JavaScript library for building the interface.
+- **Tailwind CSS**: CSS framework for fast and responsive styling.
+- **shadcn**: UI component library for modern and accessible interfaces.
+- **Vite**: Build tool for fast and optimized development.
 
-## Instalação
+## Installation
 
-1. Clone o repositório:
+1. Clone the repository:
 
    ```bash
    git clone https://github.com/vinicsperes/web-planner.git
    ```
 
-2. Instale as dependências:
+2. Install the dependencies:
 
    ```bash
    npm install
    ```
 
-3. Inicie o servidor de desenvolvimento:
+3. Start the development server:
 
    ```bash
    npm run dev
