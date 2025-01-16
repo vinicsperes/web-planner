@@ -1,21 +1,22 @@
 import { useEffect, useState } from 'react'
-import { Responsive, WidthProvider } from 'react-grid-layout';
+import { Responsive, WidthProvider } from 'react-grid-layout'
 
 import { Habit, Todo, Widget } from '@/utils/habitData'
 import { checkHabit, createHabit, fetchHabits } from '@/utils/fakeApi'
 
-import TodoWidget from '@/components/widgets/todo/TodoWidget'
 import { HabitWidget } from "@/components/widgets/habit/HabitWidget"
 import { FloatingMenu } from "@/components/floatingMenu/FloatingMenu"
-import { DraggableWidget } from '@/components/widgets/components/draggableWidget/DraggableWidget';
+import { DraggableWidget } from '@/components/widgets/components/draggableWidget/DraggableWidget'
 
-import 'react-grid-layout/css/styles.css';
-import 'react-resizable/css/styles.css';
+import 'react-grid-layout/css/styles.css'
+import 'react-resizable/css/styles.css'
 
+import { Header } from '@/components/header/Header'
+import { AppSidebar } from '@/components/ui/app-sidebar'
+import TodoWidget from '@/components/widgets/todo/TodoWidget'
+import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 import './globals.css'
-import { AppSidebar } from '@/components/ui/app-sidebar';
-import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
-import { Header } from '@/components/header/Header';
+
 const ResponsiveGridLayout = WidthProvider(Responsive)
 
 export default function Home() {
@@ -29,14 +30,14 @@ export default function Home() {
         ...habits.map((habit) => ({
             ...habit,
             type: 'habit',
-            width: 2, // Altura e largura para os que não foram cadastrados
+            width: 2,
             height: 2,
         } as Widget)),
         ...todos.map((todo) => ({
             ...todo,
             type: 'todo',
         } as Widget))
-    ];
+    ]
 
     const handleAddHabit = (newHabit: Habit) => {
         const result = createHabit(newHabit)
@@ -64,12 +65,12 @@ export default function Home() {
 
     useEffect(() => {
         if (isDragEnabled) {
-            document.body.style.userSelect = 'none';
+            document.body.style.userSelect = 'none'
         } else {
-            document.body.style.userSelect = '';
+            document.body.style.userSelect = ''
         }
         return () => {
-            document.body.style.userSelect = '';
+            document.body.style.userSelect = ''
         }
     }, [isDragEnabled])
 
@@ -118,7 +119,7 @@ export default function Home() {
                 <Header />
                 <div className='flex flex-col h-screen px-48'>
                     <FloatingMenu setIsDragEnabled={setIsDragEnabled} isDragEnabled={isDragEnabled} onAddHabit={handleAddHabit} />
-                    <div className="border-x h-full p-4">
+                    <div className="h-full p-4">
                         <ResponsiveGridLayout
                             className="layout"
                             layouts={layouts}
