@@ -115,7 +115,7 @@ export default function Home() {
     return (
         <SidebarProvider>
             <AppSidebar />
-            <SidebarInset>
+            <SidebarInset className='bg-zinc-50'>
                 <Header />
                 <div className='flex flex-col h-screen px-48'>
                     <FloatingMenu setIsDragEnabled={setIsDragEnabled} isDragEnabled={isDragEnabled} onAddHabit={handleAddHabit} />

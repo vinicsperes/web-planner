@@ -4,6 +4,7 @@ import './App.css';
 import RootLayout from './app/layout';
 import Home from './app/page';
 import FinancialDashboard from './components/financialDashboard/FinancialDashboard';
+import HabitDashboard from './components/habitDashboard/HabitDashboard';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/finances" element={<FinancialDashboard />} />
+          <Route path="/habits" element={<HabitDashboard />} />
         </Routes>
 
         <Toaster position="bottom-right" richColors />

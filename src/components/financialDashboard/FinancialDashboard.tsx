@@ -32,7 +32,7 @@ export default function FinancialDashboard() {
       <AppSidebar />
       <SidebarInset>
         <Header />
-        <div className="flex flex-col px-48 gap-4">
+        <main className="flex flex-col px-48 gap-4">
           <AccountSummary transactions={transactions} />
           <div className="grid grid-cols-10 gap-4">
             <div className="col-span-3 space-y-4">
@@ -50,7 +50,7 @@ export default function FinancialDashboard() {
               <IncomeExpensePieChart transactions={transactions} />
             </div>
           </div>
-        </div>
+        </main>
       </SidebarInset>
     </SidebarProvider>
   )

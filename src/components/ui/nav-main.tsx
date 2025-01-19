@@ -40,7 +40,7 @@ export function NavMain({
         <SidebarGroupLabel>Tools</SidebarGroupLabel>
         <SidebarMenuItem>
           <SidebarMenuButton asChild>
-            <a href='/dash'>
+            <a href='/habits'>
               <SquareCheckBig />
               <span>Habit</span>
             </a>

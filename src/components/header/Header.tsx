@@ -14,6 +14,7 @@ export function Header() {
     "/": "Dashboard",
     "/dash": "dashboard",
     "/finances": "Controle Financeiro",
+    "/habits": "Hábitos",
   };
 
   const currentPage = pageNames[location.pathname] || "Página Desconhecida";
