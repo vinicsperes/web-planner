@@ -48,7 +48,7 @@ export function NavMain({
         </SidebarMenuItem>
         <SidebarMenuItem>
           <SidebarMenuButton asChild>
-            <a href='/dash'>
+            <a href='/todos'>
               <LayoutList />
               <span>To-do</span>
             </a>

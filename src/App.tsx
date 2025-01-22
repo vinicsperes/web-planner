@@ -5,6 +5,7 @@ import RootLayout from './app/layout';
 import Home from './app/page';
 import FinancialDashboard from './components/financialDashboard/FinancialDashboard';
 import HabitDashboard from './components/habitDashboard/HabitDashboard';
+import TodoDashboard from './components/todoDashboard/TodoDashboard';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/finances" element={<FinancialDashboard />} />
+          <Route path="/todos" element={<TodoDashboard />} />
           <Route path="/habits" element={<HabitDashboard />} />
         </Routes>
 

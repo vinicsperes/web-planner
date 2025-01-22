@@ -14,6 +14,7 @@ export function Header() {
     "/": "Dashboard",
     "/dash": "dashboard",
     "/finances": "Controle Financeiro",
+    "/todos": "To-Do",
     "/habits": "Hábitos",
   };
 
