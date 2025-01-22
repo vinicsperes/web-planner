@@ -1,5 +1,3 @@
-"use client"
-
 import { useState } from "react"
 
 import { useToast } from "@/hooks/use-toast"
@@ -56,16 +54,18 @@ export function TransactionForm({ onAddTransaction }: TransactionFormProps) {
   }
 
   return (
-    <Card className="border bg-card dark:bg-card-dark rounded-xl h-full">
+    <Card className="border bg-card dark:bg-card-dark rounded-xl max-w-md mx-auto sm:p-4 p-3">
       <CardHeader>
-        <CardTitle className="text-xl font-bold text-gray-800 dark:text-white">Adicionar Transação</CardTitle>
+        <CardTitle className="text-xl font-bold text-gray-800 dark:text-white">
+          Adicionar Transação
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           <RadioGroup
             value={type}
             onValueChange={(value) => setType(value as "income" | "expense")}
-            className="flex space-x-4"
+            className="flex flex-wrap space-x-4 gap-2"
           >
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="expense" id="expense" />
@@ -91,6 +91,7 @@ export function TransactionForm({ onAddTransaction }: TransactionFormProps) {
               onChange={(e) => setAmount(e.target.value)}
               placeholder="0.00"
               step="0.01"
+              className="w-full"
             />
           </div>
           <div className="space-y-2">
@@ -100,13 +101,15 @@ export function TransactionForm({ onAddTransaction }: TransactionFormProps) {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Digite a descrição"
+              className="w-full"
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="description">Tag</Label>
+            <Label htmlFor="tag">Tag</Label>
             <Input
               id="tag"
               placeholder="Digite o tipo de transação"
+              className="w-full"
             />
           </div>
           <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white">
