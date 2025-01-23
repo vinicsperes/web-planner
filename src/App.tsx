@@ -6,7 +6,7 @@ import Home from './app/page';
 import FinancialDashboard from './components/financialDashboard/FinancialDashboard';
 import HabitDashboard from './components/habitDashboard/HabitDashboard';
 import TodoDashboard from './components/todoDashboard/TodoDashboard';
-import WorkoutDashboard from './components/workoutDashboard/WorkoutDashboard';
+import WorkoutDashboard from './components/workoutDashboard/Workout';
 
 function App() {
   return (

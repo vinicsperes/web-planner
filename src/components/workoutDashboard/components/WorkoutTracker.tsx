@@ -7,19 +7,11 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
 import { Flame, BarChart2, Edit, Trash2, Plus, X, Dumbbell, Calendar, Tag } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
-import { ScheduleEditor } from "./schedule-editor"
-import fakeDatabase from "../data/fake-database.json"
+import { ScheduleEditor } from "./ScheduleEditor"
+import fakeDatabase from "../../../utils/workoutDatabase.json"
 
 export type Workout = {
   id: string
@@ -202,9 +194,7 @@ export default function WorkoutTracker() {
   }
 
   return (
-    <div className="container mx-auto p-4 bg-gray-50 min-h-screen">
-      <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">Fitness Tracker</h1>
-
+    <div className="container mx-auto p-4 min-h-screen">
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {/* Streak Widget */}
         <Card className="col-span-1">

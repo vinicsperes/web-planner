@@ -1,0 +1,136 @@
+{
+    "schedule": [
+      {
+        "day": "Segunda",
+        "category": "Strength",
+        "muscleGroup": "Peito",
+        "exercises": [
+          { "name": "Supino", "sets": 3, "reps": 10 },
+          { "name": "Crucifixo", "sets": 3, "reps": 12 },
+          { "name": "Flexões", "sets": 3, "reps": 15 }
+        ]
+      },
+      {
+        "day": "Terça",
+        "category": "Cardio",
+        "muscleGroup": "Geral",
+        "exercises": [{ "name": "Corrida", "sets": 1, "reps": 30 }, { "name": "Pular corda", "sets": 3, "reps": 5 }]
+      },
+      {
+        "day": "Quarta",
+        "category": "Strength",
+        "muscleGroup": "Costas",
+        "exercises": [
+          { "name": "Levantamento Terra", "sets": 3, "reps": 8 },
+          { "name": "Barra Fixa", "sets": 3, "reps": 10 },
+          { "name": "Remada", "sets": 3, "reps": 12 }
+        ]
+      },
+      {
+        "day": "Quinta",
+        "category": "Flexibility",
+        "muscleGroup": "Geral",
+        "exercises": [{ "name": "Alongamento", "sets": 1, "reps": 15 }, { "name": "Yoga", "sets": 1, "reps": 30 }]
+      },
+      {
+        "day": "Sexta",
+        "category": "Strength",
+        "muscleGroup": "Pernas",
+        "exercises": [
+          { "name": "Agachamento", "sets": 3, "reps": 10 },
+          { "name": "Leg Press", "sets": 3, "reps": 12 },
+          { "name": "Avanço", "sets": 3, "reps": 15 }
+        ]
+      },
+      {
+        "day": "Sábado",
+        "category": "Balance",
+        "muscleGroup": "Core",
+        "exercises": [{ "name": "Prancha", "sets": 3, "reps": 60 }, { "name": "Russian Twist", "sets": 3, "reps": 20 }]
+      },
+      {
+        "day": "Domingo",
+        "category": "Rest",
+        "muscleGroup": "Descanso",
+        "exercises": []
+      }
+    ],
+    "workouts": [
+      {
+        "id": "1",
+        "date": "2025-01-15",
+        "category": "Strength",
+        "details": {
+          "strength": {
+            "muscleGroup": "Peito",
+            "exercises": [
+              { "name": "Supino", "sets": 3, "reps": 10, "weight": 60 },
+              { "name": "Crucifixo", "sets": 3, "reps": 12, "weight": 14 },
+              { "name": "Flexões", "sets": 3, "reps": 15, "weight": 0 }
+            ]
+          }
+        },
+        "tags": ["peito", "força"]
+      },
+      {
+        "id": "2",
+        "date": "2025-01-16",
+        "category": "Cardio",
+        "details": {
+          "cardio": {
+            "activity": "Corrida",
+            "duration": 30,
+            "distance": 5,
+            "tags": ["cardio", "resistência"]
+          }
+        },
+        "tags": ["cardio", "resistência"]
+      },
+      {
+        "id": "3",
+        "date": "2025-01-17",
+        "category": "Strength",
+        "details": {
+          "strength": {
+            "muscleGroup": "Costas",
+            "exercises": [
+              { "name": "Levantamento Terra", "sets": 3, "reps": 8, "weight": 100 },
+              { "name": "Barra Fixa", "sets": 3, "reps": 10, "weight": 0 },
+              { "name": "Remada", "sets": 3, "reps": 12, "weight": 50 }
+            ]
+          }
+        },
+        "tags": ["costas", "força"]
+      },
+      {
+        "id": "4",
+        "date": "2025-01-18",
+        "category": "Flexibility",
+        "details": {
+          "flexibility": {
+            "activity": "Yoga",
+            "duration": 45
+          }
+        },
+        "tags": ["flexibilidade", "relaxamento"]
+      },
+      {
+        "id": "5",
+        "date": "2025-01-19",
+        "category": "Strength",
+        "details": {
+          "strength": {
+            "muscleGroup": "Pernas",
+            "exercises": [
+              { "name": "Agachamento", "sets": 3, "reps": 10, "weight": 80 },
+              { "name": "Leg Press", "sets": 3, "reps": 12, "weight": 120 },
+              { "name": "Avanço", "sets": 3, "reps": 15, "weight": 20 }
+            ]
+          }
+        },
+        "tags": ["pernas", "força"]
+      }
+    ]
+  }
+  
+  

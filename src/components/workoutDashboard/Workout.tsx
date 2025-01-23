@@ -1,11 +1,12 @@
-"use client"
+    "use client"
 
 import { AppSidebar } from "@/components/ui/app-sidebar"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 
 import { Header } from "@/components/header/Header"
+import WorkoutTracker from "./components/WorkoutTracker"
 
-export default function WorkoutDashboard() {
+export default function Workout() {
 
   return (
     <SidebarProvider>
@@ -13,7 +14,7 @@ export default function WorkoutDashboard() {
       <SidebarInset>
         <Header />
         <main className="flex flex-col px-48 gap-4">
-            <h1>Workout</h1>
+            <WorkoutTracker />
         </main>
       </SidebarInset>
     </SidebarProvider>
