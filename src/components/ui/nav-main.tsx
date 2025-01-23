@@ -1,6 +1,6 @@
 "use client"
 
-import { DollarSign, LayoutList, LayoutPanelTop, SquareCheckBig, type LucideIcon } from "lucide-react"
+import { DollarSign, Dumbbell, LayoutList, LayoutPanelTop, SquareCheckBig, type LucideIcon } from "lucide-react"
 
 import {
   SidebarGroup,
@@ -59,6 +59,14 @@ export function NavMain({
             <Link to='/finances'>
               <DollarSign />
               <span>Finances</span>
+            </Link>
+          </SidebarMenuButton>
+        </SidebarMenuItem>
+        <SidebarMenuItem>
+          <SidebarMenuButton asChild>
+            <Link to='/workout'>
+              <Dumbbell />
+              <span>Treino</span>
             </Link>
           </SidebarMenuButton>
         </SidebarMenuItem>

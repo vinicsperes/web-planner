@@ -54,7 +54,7 @@ export function TransactionForm({ onAddTransaction }: TransactionFormProps) {
   }
 
   return (
-    <Card className="border bg-card dark:bg-card-dark rounded-xl max-w-md mx-auto sm:p-4 p-3">
+    <Card className="border bg-card dark:bg-card-dark rounded-xl max-w-md sm:p-4 p-3">
       <CardHeader>
         <CardTitle className="text-xl font-bold text-gray-800 dark:text-white">
           Adicionar Transação
